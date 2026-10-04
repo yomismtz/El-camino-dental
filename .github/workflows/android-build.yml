@@ -32,12 +32,31 @@ jobs:
         run: |
           rm -rf www android
           mkdir -p www
-          cp index.html play.html privacy.html site.css teacher.html teacher.css teacher.js exam.html exam.css exam.js legacy-difficulty-audit.js legacy-case-grading-audit.js manifest.webmanifest sw.js nomenclatura-etimologia-questions.js primer-parcial-questions.js styles-v10.css ui-polish.css game-premium-v93.css game-board-canvas-v98.js character-art.css android-touch-v85.css i18n.js learning-tools.js area-classifier.js accessibility.js app-v10.js android-navigation.js game-data-button-v100.js www/
+          cp index.html play.html privacy.html site.css teacher.html teacher.css teacher.js exam.html exam.css exam.js legacy-difficulty-audit.js legacy-case-grading-audit.js manifest.webmanifest sw.js nomenclatura-etimologia-questions.js primer-parcial-questions.js styles-v10.css ui-polish.css game-premium-v93.css game-landscape-v100.css game-board-canvas-v98.js character-art.css android-touch-v85.css i18n.js learning-tools.js area-classifier.js accessibility.js app-v10.js android-navigation.js game-data-button-v100.js www/
           cp questions*.js cases*.js expansion-questions-2026.js expansion-cases-2026.js fundamentos-oclusion.js fundamentos-casos.js steiner-questions.js steiner-cases.js fisiologia-funcion-questions.js fisiologia-funcion-cases.js crecimiento-desarrollo-questions.js crecimiento-desarrollo-cases.js habitos-parafunciones-*.js www/
           cp -r brand www/
 
       - name: Add Android platform
         run: npx cap add android
+
+      - name: Lock Android app to landscape
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path("android/app/src/main/AndroidManifest.xml")
+          s = p.read_text()
+          needle = '<activity android:name=".MainActivity"'
+          if needle not in s:
+              raise SystemExit("MainActivity declaration not found in generated AndroidManifest.xml")
+          if 'android:screenOrientation="landscape"' not in s:
+              s = s.replace(
+                  needle,
+                  '<activity android:name=".MainActivity" android:screenOrientation="landscape" android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"',
+                  1
+              )
+              p.write_text(s)
+          print("Android orientation locked to landscape")
 
       - name: Sync Capacitor
         run: npx cap sync android
