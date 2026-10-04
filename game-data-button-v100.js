@@ -14,3 +14,5 @@
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});
   else install();
 })();
+
+/* Build trigger: verify Android landscape manifest. */
