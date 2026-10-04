@@ -1,0 +1,117 @@
+/* El Camino Dental — v100: juego horizontal obligatorio y tablero 80 casillas */
+html,body{width:100%;height:100%;margin:0;overflow:hidden}
+@media (orientation:landscape){
+  body.game-playing .app-shell{
+    width:100vw!important;height:100dvh!important;
+    padding:max(env(safe-area-inset-top),4px) max(env(safe-area-inset-right),8px) max(env(safe-area-inset-bottom),6px) max(env(safe-area-inset-left),8px)!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+  }
+  body.game-playing .topbar{
+    height:42px!important;min-height:42px!important;
+    margin:0 0 5px!important;padding:4px 8px!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+  }
+  body.game-playing .brand-logo{max-height:34px!important;width:auto!important}
+  body.game-playing .top-actions{display:flex!important;gap:5px!important;flex-wrap:nowrap!important;overflow:hidden!important}
+  body.game-playing .top-actions .icon-btn{width:36px!important;height:34px!important;min-width:36px!important;padding:0!important}
+  body.game-playing .top-actions #characterBookBtn,
+  body.game-playing .top-actions #studyBtn,
+  body.game-playing .top-actions #clinicalCasesBtn,
+  body.game-playing .top-actions #bluetoothBtn,
+  body.game-playing .top-actions #tutorialBtn,
+  body.game-playing .top-actions #rulesBtn,
+  body.game-playing .top-actions .link-btn{display:none!important}
+  body.game-playing .top-actions #profileBtn{display:none!important}
+  body.game-playing .game-screen.active{
+    height:calc(100dvh - 47px - env(safe-area-inset-top) - env(safe-area-inset-bottom))!important;
+    max-height:none!important;min-height:0!important;
+    overflow:hidden!important;
+  }
+  body.game-playing .game-grid{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) clamp(250px,27vw,330px)!important;
+    grid-template-rows:minmax(0,1fr)!important;
+    gap:8px!important;width:100%!important;height:100%!important;
+    min-height:0!important;
+  }
+  body.game-playing .board-card{
+    min-width:0!important;min-height:0!important;height:100%!important;
+    display:grid!important;grid-template-rows:auto minmax(0,1fr) auto!important;
+    padding:6px!important;overflow:hidden!important;
+  }
+  body.game-playing .board-header{
+    display:flex!important;align-items:center!important;justify-content:space-between!important;
+    min-height:30px!important;margin:0 2px 4px!important;
+  }
+  body.game-playing .board-header h2{font-size:15px!important;margin:0!important}
+  body.game-playing .board-header .eyebrow{font-size:8px!important}
+  body.game-playing .spiral-board.zigzag-board{
+    width:100%!important;height:100%!important;min-height:0!important;
+    max-width:none!important;max-height:none!important;aspect-ratio:auto!important;
+    margin:0!important;box-sizing:border-box!important;
+  }
+  body.game-playing .legend-panel{margin:3px auto 0!important;font-size:9px!important}
+  body.game-playing .legend-panel summary{padding:3px 8px!important}
+  body.game-playing .side-stack{
+    display:grid!important;grid-template-columns:1fr!important;
+    grid-template-rows:minmax(0,1fr) auto!important;gap:8px!important;
+    min-width:0!important;min-height:0!important;
+  }
+  body.game-playing .dice-panel{
+    min-height:0!important;overflow:hidden!important;
+    display:flex!important;flex-direction:column!important;
+    justify-content:center!important;gap:7px!important;padding:10px!important;
+  }
+  body.game-playing .module-badge{margin:0!important;font-size:11px!important}
+  body.game-playing .turn-callout{margin:0!important;min-height:52px!important;padding:6px!important}
+  body.game-playing .dice-eyebrow{font-size:9px!important}
+  body.game-playing .dice-row{gap:8px!important;margin:0!important}
+  body.game-playing .die{width:48px!important;height:48px!important;font-size:34px!important}
+  body.game-playing .dice-total{font-size:11px!important}
+  body.game-playing .roll-btn{min-height:42px!important;margin:0!important}
+  body.game-playing .status{font-size:10px!important;margin:0!important}
+  body.game-playing .players-panel{
+    min-height:0!important;overflow:hidden!important;padding:7px!important;
+  }
+  body.game-playing .players-panel .panel-title{margin-bottom:3px!important}
+  body.game-playing .players-panel .panel-title h3{font-size:13px!important}
+  body.game-playing .score-list{
+    display:flex!important;gap:5px!important;overflow-x:auto!important;
+    margin:0!important;padding-bottom:2px!important;
+  }
+  body.game-playing .player-row{
+    min-width:150px!important;flex:1 0 150px!important;
+    padding:5px!important;grid-template-columns:34px 1fr auto!important;
+  }
+  body.game-playing .avatar{width:32px!important;height:32px!important}
+  body.game-playing .game-data-btn{
+    display:inline-flex!important;align-items:center!important;justify-content:center!important;
+    min-height:30px!important;padding:4px 10px!important;border-radius:10px!important;
+    border:1px solid #d8e8ef!important;background:#f4fbff!important;
+    color:#17658a!important;font-weight:800!important;font-size:10px!important;
+  }
+}
+@media (orientation:landscape) and (max-height:500px){
+  body.game-playing .topbar{height:38px!important;min-height:38px!important}
+  body.game-playing .game-screen.active{height:calc(100dvh - 43px - env(safe-area-inset-top) - env(safe-area-inset-bottom))!important}
+  body.game-playing .board-header{display:none!important}
+  body.game-playing .game-grid{grid-template-columns:minmax(0,1fr) 245px!important;gap:5px!important}
+  body.game-playing .side-stack{gap:5px!important}
+  body.game-playing .dice-panel{padding:6px!important;gap:4px!important}
+  body.game-playing .turn-callout{min-height:44px!important}
+  body.game-playing .die{width:40px!important;height:40px!important;font-size:29px!important}
+  body.game-playing .roll-btn{min-height:36px!important;font-size:11px!important}
+  body.game-playing .players-panel{padding:5px!important}
+  body.game-playing .player-row{min-width:125px!important;flex-basis:125px!important}
+}
+@media (orientation:portrait){
+  body.game-playing:before{
+    content:"Gira el dispositivo para jugar en horizontal";
+    position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;
+    padding:28px;text-align:center;background:#f7fbfd;color:#174b68;
+    font:800 20px system-ui,sans-serif;
+  }
+  body.game-playing .game-screen{visibility:hidden!important}
+}
