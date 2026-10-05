@@ -39,6 +39,17 @@ jobs:
       - name: Add Android platform
         run: npx cap add android
 
+      - name: Install El Camino Dental launcher icon
+        shell: bash
+        run: |
+          mkdir -p android/app/src/main/res/mipmap-anydpi-v26 android/app/src/main/res/mipmap-anydpi
+          cp brand/ic_launcher_custom.xml android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+          cp brand/ic_launcher_custom.xml android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+          cp brand/ic_launcher_custom.xml android/app/src/main/res/mipmap-anydpi/ic_launcher.xml
+          cp brand/ic_launcher_custom.xml android/app/src/main/res/mipmap-anydpi/ic_launcher_round.xml
+          grep -q 'android:icon="@mipmap/ic_launcher"' android/app/src/main/AndroidManifest.xml
+          echo "Launcher icon installed: tooth + road"
+
       - name: Lock Android app to landscape
         shell: bash
         run: |
