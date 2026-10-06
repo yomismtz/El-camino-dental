@@ -250,7 +250,7 @@ assert(css.includes('step6-focus'),'Debe existir resumen compacto de posición/d
 assert(css.includes('step6-current-cell'),'La casilla actual debe tener resaltado visual');
 assert(css.includes('step6-turn-pulse'),'Debe existir una señal visual de cambio de turno');
 assert(app.includes('function endTurn()'),'El flujo debe centralizar el cambio de turno');
-assert(app.includes("saveGame();render();tone('turn')"),'El cambio de turno debe guardar, renderizar y anunciarse');
+assert(app.includes('saveGame();render();focusCurrentCell'),'El cambio de turno debe guardar, renderizar y enfocar');
 assert(app.includes('scheduleComputerTurn'),'Los turnos contra computadora deben usar el mismo flujo central');
 assert(app.includes('visibilitychange'),'Debe conservarse recuperación al suspender WebView');
 console.log('✓ Paso 6: tablero compacto, foco de posición/destino, indicador de turno y continuidad visual');
