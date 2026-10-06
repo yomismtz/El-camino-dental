@@ -267,4 +267,4 @@ jobs:
           path: release-files/
           if-no-files-found: error
 
-# Rebuild for Play Console update 3.7.7 / versionCode 44
+# Rebuild for Play Console update 3.7.7 / versionCode 44 / syntax fix
