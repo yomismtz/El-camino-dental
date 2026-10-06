@@ -104,7 +104,6 @@ function ensureBoardLayout(force=false){
   JAIL_CELL=[...CELL_TYPES.jail][0]||44;
   try{localStorage.setItem(BOARD_LAYOUT_KEY,JSON.stringify({version:2,cells,jail:JAIL_CELL}))}catch{}
 }
-};
 const TEACHER_ACTIVE_KEY='ortopediaActiveTeacherQuestionsV1';
 const TEACHER_CASE_KEY='ortopediaActiveTeacherCasesV1';
 function loadTeacherQuestions(){try{const q=JSON.parse(localStorage.getItem(TEACHER_ACTIVE_KEY)||'[]');return Array.isArray(q)?q.filter(x=>x&&x.text&&Array.isArray(x.options)&&x.options.length>=2):[]}catch{return[]}}
