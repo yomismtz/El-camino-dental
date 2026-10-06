@@ -28,8 +28,6 @@ const CHARACTERS=[
   {name:'La Niña',role:'Paciente infantil',spriteX:'100%',spriteY:'50%',emoji:'👧🏻',pawnEmoji:'👧🏻',color:'#ff7aa8',anim:'jump',reaction:'¡Hola! Estoy lista.',desc:'Alegre, curiosa y valiente durante su visita dental.'},
   {name:'El Niño',role:'Paciente infantil',spriteX:'0%',spriteY:'100%',emoji:'👦🏻',pawnEmoji:'👦🏻',color:'#3988da',anim:'jump',reaction:'¡Listo para el reto!',desc:'Simpático, curioso y con mucha energía.'},
   {name:'Bracki',role:'Maestro de los brackets',spriteX:'33.333%',spriteY:'100%',emoji:'😁',pawnEmoji:'😁',color:'#8a52e8',anim:'wiggle',reaction:'¡Brackets listos!',desc:'Divertido, ingenioso y orgulloso de su sonrisa con brackets.'},
-  {name:'Súper Diente',role:'Héroe de la sonrisa',spriteX:'66.667%',spriteY:'100%',emoji:'🦷',pawnEmoji:'🦷',color:'#f34d72',anim:'hero',reaction:'¡Al rescate de las sonrisas!',desc:'Valiente, energético y defensor de la salud dental.'},
-  {name:'La Asistente Dental',role:'Asistencia clínica',spriteX:'100%',spriteY:'100%',emoji:'🧑🏼‍⚕️',pawnEmoji:'🧑🏼‍⚕️',color:'#16a6a0',anim:'pulse',reaction:'¡Todo listo para comenzar!',desc:'Organizada, ágil y preparada para apoyar al equipo.'},
   // Se mantienen exactamente 10 personajes elegibles en la selección inicial.
 ]
 const RULE_META={
