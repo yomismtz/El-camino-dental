@@ -925,7 +925,9 @@ function finishRound(winner,points,reason='answer'){
   state.round=roundNo+1;
   pendingQuestion=null;
   if(questionDialog?.open)questionDialog.close();
-  state.current=state.players.indexOf(winner);
+  const winnerIndex=state.players.indexOf(winner);
+  const currentIndex=winnerIndex>=0?winnerIndex:state.current;
+  state.current=(currentIndex+1)%state.players.length;
   state.turn++;
   state.locked=false;
   saveGame();render();
