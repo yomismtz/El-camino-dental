@@ -30,11 +30,7 @@ const CHARACTERS=[
   {name:'Bracki',role:'Maestro de los brackets',spriteX:'33.333%',spriteY:'100%',emoji:'😁',pawnEmoji:'😁',color:'#8a52e8',anim:'wiggle',reaction:'¡Brackets listos!',desc:'Divertido, ingenioso y orgulloso de su sonrisa con brackets.'},
   {name:'Súper Diente',role:'Héroe de la sonrisa',spriteX:'66.667%',spriteY:'100%',emoji:'🦷',pawnEmoji:'🦷',color:'#f34d72',anim:'hero',reaction:'¡Al rescate de las sonrisas!',desc:'Valiente, energético y defensor de la salud dental.'},
   {name:'La Asistente Dental',role:'Asistencia clínica',spriteX:'100%',spriteY:'100%',emoji:'🧑🏼‍⚕️',pawnEmoji:'🧑🏼‍⚕️',color:'#16a6a0',anim:'pulse',reaction:'¡Todo listo para comenzar!',desc:'Organizada, ágil y preparada para apoyar al equipo.'},
-  {name:'La Muela del Juicio',role:'Personaje desbloqueable',spriteX:'0%',spriteY:'0%',emoji:'🦷',pawnEmoji:'🦷',color:'#9b6b42',anim:'hero',reaction:'¡Llegó la hora de demostrar lo que sé!',desc:'Personaje especial que se desbloquea al acumular partidas.',unlockId:'wisdom',unlockLabel:'10 partidas'},
-  {name:'Ratón de los Dientes',role:'Personaje legendario',spriteX:'0%',spriteY:'0%',emoji:'🐭',pawnEmoji:'🐭',color:'#e8a5c5',anim:'jump',reaction:'¡La recompensa está en tus manos!',desc:'Personaje legendario de la colección.',unlockId:'toothMouse',unlockLabel:'30 partidas'},
-  {name:'Santa Apolonia',role:'Personaje legendario',spriteX:'0%',spriteY:'0%',emoji:'👑🦷',pawnEmoji:'🦷',color:'#d8a83e',anim:'hero',reaction:'¡Que la sabiduría dental te acompañe!',desc:'Se obtiene con victorias en dificultad extrema.',unlockId:'apollonia',unlockLabel:'10 victorias en extremo'},
-  {name:'Hada de los Dientes',role:'Personaje legendario',spriteX:'0%',spriteY:'0%',emoji:'🧚🦷',pawnEmoji:'🦷',color:'#b879d6',anim:'wink',reaction:'¡Una sonrisa más para la colección!',desc:'Personaje legendario de alto dominio.',unlockId:'toothFairy',unlockLabel:'25 victorias en extremo'},
-  {name:'Dios de los Dientes',role:'Personaje mítico',spriteX:'0%',spriteY:'0%',emoji:'⚡🦷',pawnEmoji:'🦷',color:'#c58b24',anim:'hero',reaction:'¡Has llegado al nivel mítico!',desc:'El personaje máximo de la colección.',unlockId:'toothGod',unlockLabel:'50 victorias en extremo'}
+  // Se mantienen exactamente 10 personajes elegibles en la selección inicial.
 ]
 const RULE_META={
   question:{icon:'❓',title:'Pregunta',message:'Si contestas mal, retrocedes 1 casilla.'},
