@@ -185,7 +185,7 @@ assert(androidTouch.includes('backdrop-filter:none!important'),'El perfil ligero
 const requiredScripts=['area-classifier.js','primer-parcial-questions.js','nomenclatura-etimologia-questions.js','questions.js','app-v10.js','android-navigation.js'];
 for(const script of requiredScripts)assert(html.includes('src="'+script+'"'),'Falta script crítico '+script);
 
-console.log('✓ Tablero: 80 casillas, tipos sin colisiones y 3 cárceles');
+console.log('✓ Tablero: 100 casillas, tipos sin colisiones y 3 cárceles');
 console.log('✓ Meta: victoria exacta y rebote validados para todas las posiciones/tiradas 2–12');
 console.log('✓ Configuración: 2–5 jugadores, computadora y 4 niveles IA');
 console.log('✓ Persistencia: guardado, recuperación y resolución pendiente presentes');
