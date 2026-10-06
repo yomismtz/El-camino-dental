@@ -281,7 +281,8 @@ assert(html.includes('id="characterCollection"'),'Debe existir el resumen de col
 assert(html.includes('src="step9-characters-runtime.js"'),'play.html debe cargar el runtime del Paso 9');
 assert(app.includes('window.step9GetCharacters=function(){return CHARACTERS}'),'Debe existir puente seguro a la colección de personajes');
 assert(!app.includes("unlockId:'wisdom'")&&!app.includes("unlockId:'toothMouse'"),'La selección debe limitarse a los 10 personajes base');
-assert((app.match(/\{name:/g)||[]).length===10,'Debe haber exactamente 10 personajes elegibles');
+const characterBlock=app.slice(app.indexOf('const CHARACTERS=['),app.indexOf('const RULE_META='));
+assert((characterBlock.match(/\{name:/g)||[]).length===10,'Debe haber exactamente 10 personajes elegibles');
 assert(css.includes('.character-card.locked'),'Debe existir estado visual para personajes bloqueados');
 const step9=fs.readFileSync('step9-characters-runtime.js','utf8');
 assert(step9.includes('elCaminoDentalCharacterProgressV1'),'El progreso de personajes debe persistir');
