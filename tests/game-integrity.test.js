@@ -58,7 +58,7 @@ console.log('✓ Mejora 6: 6 casillas especiales, efectos persistentes y QA de c
 assert.strictEqual(bounce(97,3),100,'77 + 3 debe ganar exactamente');
 assert.strictEqual(bounce(97,8),95,'77 + 8 debe rebotar a 75');
 assert.strictEqual(bounce(99,2),99,'79 + 2 debe rebotar a 79');
-assert.strictEqual(bounce(98,12),88,'78 + 12 debe rebotar a 70');
+assert.strictEqual(bounce(98,12),90,'98 + 12 debe rebotar a 90');
 for(let start=0;start<100;start++)for(let roll=2;roll<=12;roll++){
   const end=bounce(start,roll);
   assert(end>=0&&end<=100,'Rebote fuera del tablero');
