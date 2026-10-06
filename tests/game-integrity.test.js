@@ -108,7 +108,7 @@ for(const fragment of [
 ])assert(app.includes(fragment),'Falta resolución para: '+fragment);
 
 assert(app.includes("p.jailVisits===1?2:3"),'Cárcel debe penalizar 2 turnos la primera visita y 3 después');
-assert(app.includes("const JAIL_CELL=44;"),'Demanda debe poder enviar a cárcel 44');
+assert(app.includes("let JAIL_CELL=44;"),'Debe existir una cárcel inicial de respaldo y la demanda debe usar JAIL_CELL');
 assert(app.includes("await move(JAIL_CELL-p.position)"),'La demanda debe mover a la cárcel');
 assert(app.includes("if(depth>=8)"),'Debe existir límite de seguridad para cadenas de eventos');
 assert(app.includes("grade==='excellent'")&&app.includes("delta=2"),'Caso excelente debe avanzar 2');
