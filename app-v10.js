@@ -472,13 +472,13 @@ function balancedPersonalizedOrder(pool){
 }
 function freshQuestionQueue(pool){
   if(!pool.length)return [];
+  // Las fichas/preguntas siempre se presentan en orden aleatorio.
+  // No se aplica orden adaptativo ni agrupación por área.
   let previous=[];
   try{previous=JSON.parse(localStorage.getItem(recentOrderKey())||'[]')}catch{}
   let queue=[],presented=[];
   for(let attempt=0;attempt<12;attempt++){
-    const balanced=state?.module==='personalizado'?balancedPersonalizedOrder(pool):null;
-    const adaptive=balanced||window.LearningTools?.orderIndices?.(pool,state?.module);
-    queue=Array.isArray(adaptive)&&adaptive.length===pool.length?[...adaptive].reverse():shuffledIndices(pool.length);
+    queue=shuffledIndices(pool.length);
     presented=[...queue].reverse().map(i=>String(pool[i]?.id??i));
     const compare=Math.min(previous.length,presented.length,10);
     let same=0;
