@@ -893,3 +893,95 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden}
 }
 
 /* v107 fin */
+
+
+/* v108 — categorías centradas + mayor respuesta táctil. */
+@media (orientation:landscape){
+  #setup.screen.active .area-picker-panel{
+    align-items:stretch!important;
+    width:100%!important;
+  }
+
+  #setup.screen.active .area-picker-head{
+    text-align:center!important;
+  }
+
+  #setup.screen.active .area-picker-groups{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    width:100%!important;
+    box-sizing:border-box!important;
+  }
+
+  #setup.screen.active .area-group{
+    width:100%!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+  }
+
+  #setup.screen.active .area-group h4{
+    text-align:center!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+
+  #setup.screen.active .area-choice-grid{
+    width:100%!important;
+    max-width:100%!important;
+    margin-left:auto!important;
+    margin-right:auto!important;
+    justify-items:stretch!important;
+    align-items:stretch!important;
+  }
+
+  #setup.screen.active .area-choice{
+    min-height:48px!important;
+    min-width:0!important;
+    touch-action:manipulation!important;
+    -webkit-tap-highlight-color:rgba(39,139,255,.18)!important;
+    cursor:pointer!important;
+  }
+
+  #setup.screen.active .area-choice *{
+    pointer-events:none!important;
+  }
+
+  /* Todos los controles responden con un área táctil más generosa. */
+  #setup.screen.active button,
+  #setup.screen.active .btn,
+  #setup.screen.active input,
+  #setup.screen.active select,
+  #setup.screen.active .character-card,
+  body.game-playing button,
+  body.game-playing .board-token,
+  body.game-playing .player-row{
+    touch-action:manipulation!important;
+    -webkit-tap-highlight-color:rgba(39,139,255,.18)!important;
+  }
+
+  #setup.screen.active button,
+  #setup.screen.active .btn{
+    min-height:44px!important;
+  }
+
+  body.game-playing .roll-btn{
+    min-height:48px!important;
+    min-width:64px!important;
+  }
+}
+
+/* En pantallas muy bajas mantenemos los botones utilizables sin volver a
+   comprimir el selector hasta hacerlo difícil de tocar. */
+@media (orientation:landscape) and (max-height:500px){
+  #setup.screen.active .area-choice{
+    min-height:44px!important;
+  }
+
+  #setup.screen.active button,
+  #setup.screen.active .btn{
+    min-height:42px!important;
+  }
+}
+
+/* v108 fin */
