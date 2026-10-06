@@ -157,8 +157,8 @@ jobs:
 
           gradle=Path('android/app/build.gradle')
           g=gradle.read_text()
-          g=re.sub(r'versionCode\s+\d+','versionCode 43',g)
-          g=re.sub(r'versionName\s+"[^"]+"','versionName "3.7.6"',g)
+          g=re.sub(r'versionCode\s+\d+','versionCode 44',g)
+          g=re.sub(r'versionName\s+"[^"]+"','versionName "3.7.7"',g)
           g=g.replace('minifyEnabled false','minifyEnabled true')
           if 'minifyEnabled true' not in g:
               g=g.replace('release {','release {\n            minifyEnabled true',1)
@@ -209,7 +209,7 @@ jobs:
         shell: bash
         run: |
           mkdir -p release-files
-          cp android/app/build/outputs/bundle/release/app-release.aab release-files/El-Camino-Dental-3.7.6-unsigned.aab
+          cp android/app/build/outputs/bundle/release/app-release.aab release-files/El-Camino-Dental-3.7.7-unsigned.aab
           test -s android/app/build/outputs/mapping/release/mapping.txt
           cp android/app/build/outputs/mapping/release/mapping.txt release-files/El-Camino-Dental-3.7.6-retrace-mapping.txt
 
@@ -249,10 +249,10 @@ jobs:
           test -s release-files/El-Camino-Dental-3.7.6-native-debug-symbols.zip
           unzip -l release-files/El-Camino-Dental-3.7.6-native-debug-symbols.zip
 
-          printf '3.7.6\n' > release-files/NOMBRE-DE-LA-VERSION.txt
+          printf '3.7.7\n' > release-files/NOMBRE-DE-LA-VERSION.txt
           cat > release-files/DETALLES-DE-VERSION.txt <<'EOF'
-          Nombre de la versión: 3.7.6
-          Código de versión: 43
+          Nombre de la versión: 3.7.7
+          Código de versión: 44
           Nombre del paquete: com.uam.cientodentistas
           Target SDK: 36
           ReTrace: generado por R8 para esta misma compilación
@@ -267,4 +267,4 @@ jobs:
           path: release-files/
           if-no-files-found: error
 
-# Rebuild after final habits syntax fix
+# Rebuild for Play Console update 3.7.7 / versionCode 44
