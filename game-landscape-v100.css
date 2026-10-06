@@ -218,3 +218,384 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden}
     flex:0 0 auto!important;
   }
 }
+
+/* v104 — auditoría integral de interfaz y colisiones
+   Regla: ningún elemento visual importante debe tapar a otro. */
+
+/* ===== TABLERO: geometría estable ===== */
+@media (orientation:landscape){
+  body.game-playing .game-grid{
+    grid-template-columns:minmax(0,1fr) clamp(255px,26vw,315px)!important;
+    gap:8px!important;
+  }
+
+  body.game-playing .board-card{
+    grid-template-rows:minmax(0,1fr)!important;
+    padding:6px!important;
+    min-width:0!important;
+  }
+
+  body.game-playing .spiral-board.zigzag-board{
+    position:relative!important;
+    width:100%!important;
+    height:100%!important;
+    min-width:0!important;
+    min-height:0!important;
+    margin:0!important;
+    overflow:hidden!important;
+  }
+
+  /* Una casilla tiene zonas reservadas: número arriba, icono abajo, ficha al centro. */
+  body.game-playing .zigzag-board .cell{
+    overflow:visible!important;
+    contain:layout paint!important;
+  }
+
+  body.game-playing .zigzag-board .cell-number{
+    position:absolute!important;
+    left:5px!important;
+    top:3px!important;
+    z-index:3!important;
+    max-width:40%!important;
+    font-size:clamp(8px,1.55vh,13px)!important;
+    line-height:1!important;
+    pointer-events:none!important;
+  }
+
+  body.game-playing .zigzag-board .cell-icon{
+    position:absolute!important;
+    right:50%!important;
+    bottom:3px!important;
+    transform:translateX(50%)!important;
+    z-index:3!important;
+    font-size:clamp(10px,1.9vh,17px)!important;
+    line-height:1!important;
+    pointer-events:none!important;
+  }
+
+  /* Si una casilla está ocupada, se elimina la colisión ficha/icono.
+     El color y el número mantienen la identificación de la casilla. */
+  body.game-playing .zigzag-board .cell:has(.board-token) .cell-icon{
+    opacity:0!important;
+    visibility:hidden!important;
+  }
+
+  body.game-playing .zigzag-board .tokens{
+    position:absolute!important;
+    inset:0!important;
+    z-index:60!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    pointer-events:none!important;
+  }
+
+  body.game-playing .zigzag-board .board-token{
+    position:relative!important;
+    left:auto!important;
+    top:auto!important;
+    flex:0 0 auto!important;
+    width:clamp(18px,2.7vh,29px)!important;
+    height:clamp(18px,2.7vh,29px)!important;
+    min-width:18px!important;
+    min-height:18px!important;
+    max-width:29px!important;
+    max-height:29px!important;
+    margin:-2px!important;
+    transform:translateZ(0)!important;
+    z-index:61!important;
+  }
+
+  /* Con varios jugadores en la misma casilla se agrupan sin salir de ella. */
+  body.game-playing .zigzag-board .tokens:has(.board-token:nth-child(2)){
+    gap:1px!important;
+    flex-wrap:wrap!important;
+    padding:3px!important;
+  }
+
+  body.game-playing .zigzag-board .board-token.active{
+    width:clamp(21px,3.1vh,32px)!important;
+    height:clamp(21px,3.1vh,32px)!important;
+    max-width:32px!important;
+    max-height:32px!important;
+    z-index:64!important;
+  }
+
+  /* META: visualmente separada y sin bloquear las fichas. */
+  body.game-playing .zigzag-board .goal{
+    z-index:20!important;
+    pointer-events:none!important;
+  }
+  body.game-playing .zigzag-board .cell.finish{
+    z-index:80!important;
+  }
+  body.game-playing .zigzag-board .cell.finish .tokens{
+    z-index:90!important;
+    pointer-events:none!important;
+  }
+
+  /* Decoración nunca debe competir con casillas o fichas. */
+  body.game-playing .zigzag-board .board-decoration{
+    pointer-events:none!important;
+    z-index:2!important;
+  }
+
+  /* ===== PANEL DERECHO ===== */
+  body.game-playing .side-stack{
+    grid-template-rows:minmax(0,1fr) auto!important;
+    min-width:0!important;
+    min-height:0!important;
+    overflow:hidden!important;
+  }
+
+  body.game-playing .dice-panel{
+    min-width:0!important;
+    min-height:0!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+  }
+
+  body.game-playing .module-badge,
+  body.game-playing .turn-copy strong,
+  body.game-playing .turn-copy small,
+  body.game-playing .status{
+    min-width:0!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+
+  body.game-playing .module-badge{
+    white-space:nowrap!important;
+  }
+
+  body.game-playing .turn-copy strong,
+  body.game-playing .turn-copy small{
+    white-space:nowrap!important;
+  }
+
+  body.game-playing .dice-row{
+    flex:0 0 auto!important;
+  }
+
+  body.game-playing .roll-btn{
+    flex:0 0 auto!important;
+  }
+
+  /* ===== JUGADORES + DATOS ===== */
+  body.game-playing .players-panel{
+    min-width:0!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+  }
+
+  body.game-playing .players-panel .panel-title{
+    min-width:0!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto auto!important;
+    align-items:center!important;
+    gap:4px!important;
+  }
+
+  body.game-playing .players-panel .panel-title h3{
+    min-width:0!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+  }
+
+  body.game-playing .players-panel .panel-title .tiny-btn,
+  body.game-playing .players-panel .panel-title .game-data-btn{
+    min-width:0!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+  }
+
+  body.game-playing .players-panel .game-data-btn{
+    min-height:28px!important;
+    padding:4px 7px!important;
+    font-size:9px!important;
+  }
+
+  body.game-playing .score-list{
+    min-width:0!important;
+    max-width:100%!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    scrollbar-width:thin!important;
+  }
+
+  body.game-playing .player-row{
+    box-sizing:border-box!important;
+    min-width:125px!important;
+    max-width:180px!important;
+  }
+
+  body.game-playing .player-row b,
+  body.game-playing .player-row small{
+    min-width:0!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+  }
+}
+
+/* ===== HORIZONTAL MUY BAJO: 480–500 px de alto ===== */
+@media (orientation:landscape) and (max-height:500px){
+  body.game-playing .game-grid{
+    grid-template-columns:minmax(0,1fr) 240px!important;
+    gap:5px!important;
+  }
+
+  body.game-playing .zigzag-board .board-token{
+    width:clamp(17px,2.55vh,25px)!important;
+    height:clamp(17px,2.55vh,25px)!important;
+    min-width:17px!important;
+    min-height:17px!important;
+    max-width:25px!important;
+    max-height:25px!important;
+  }
+
+  body.game-playing .zigzag-board .board-token.active{
+    width:clamp(19px,2.85vh,27px)!important;
+    height:clamp(19px,2.85vh,27px)!important;
+  }
+
+  body.game-playing .zigzag-board .cell-number{
+    left:4px!important;
+    top:2px!important;
+    font-size:clamp(7px,1.4vh,11px)!important;
+  }
+
+  body.game-playing .zigzag-board .cell-icon{
+    bottom:2px!important;
+    font-size:clamp(9px,1.7vh,14px)!important;
+  }
+
+  body.game-playing .players-panel .panel-title{
+    grid-template-columns:minmax(0,1fr) auto auto!important;
+  }
+
+  body.game-playing .players-panel .game-data-btn{
+    min-height:24px!important;
+    padding:2px 5px!important;
+    font-size:8px!important;
+  }
+
+  body.game-playing .players-panel .tiny-btn{
+    padding:4px 5px!important;
+    font-size:8px!important;
+  }
+
+  body.game-playing .player-row{
+    min-width:112px!important;
+    max-width:145px!important;
+    grid-template-columns:29px minmax(0,1fr) auto!important;
+    gap:5px!important;
+    padding:4px!important;
+  }
+
+  body.game-playing .avatar{
+    width:28px!important;
+    height:28px!important;
+    font-size:18px!important;
+  }
+}
+
+/* ===== DIÁLOGOS: nunca desbordar ni cortar contenido ===== */
+#questionDialog,
+#eventDialog,
+#rulesDialog,
+#studyDialog,
+#clinicalCasesDialog,
+#characterBookDialog,
+#tutorialDialog{
+  box-sizing:border-box!important;
+}
+
+#questionDialog .question-card,
+#studyDialog .study-card,
+#clinicalCasesDialog .modal-card,
+#rulesDialog .modal-card,
+#characterBookDialog .modal-card,
+#tutorialDialog .modal-card{
+  box-sizing:border-box!important;
+  max-width:calc(100vw - 20px)!important;
+  max-height:calc(100dvh - 20px)!important;
+  overflow:auto!important;
+}
+
+#questionDialog .modal-head{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto auto!important;
+  align-items:center!important;
+  gap:7px!important;
+}
+
+#questionDialog .category-pill,
+#questionDialog #questionNumber,
+#questionDialog .timer-wrap{
+  min-width:0!important;
+}
+
+#questionDialog .category-pill{
+  max-width:100%!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+
+#questionDialog .question-card h2,
+#studyDialog #studyQuestion,
+#clinicalCasesDialog #clinicalCaseText{
+  max-width:100%!important;
+  overflow-wrap:anywhere!important;
+  word-break:normal!important;
+}
+
+#questionDialog .options,
+#studyDialog .options,
+#clinicalCasesDialog .options{
+  min-width:0!important;
+}
+
+#questionDialog .option,
+#studyDialog .option,
+#clinicalCasesDialog .option{
+  min-width:0!important;
+  overflow:hidden!important;
+}
+
+#questionDialog .option span:last-child,
+#studyDialog .option span:last-child,
+#clinicalCasesDialog .option span:last-child{
+  min-width:0!important;
+  overflow-wrap:anywhere!important;
+}
+
+#questionDialog .modal-actions{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  justify-content:flex-end!important;
+  gap:7px!important;
+}
+
+#questionDialog .modal-actions .btn,
+#questionDialog .modal-actions .secondary-btn{
+  flex:0 1 auto!important;
+  min-width:0!important;
+  max-width:100%!important;
+}
+
+/* ===== BOTONES TÁCTILES ===== */
+@media (orientation:landscape){
+  body.game-playing button,
+  body.game-playing a.icon-btn{
+    -webkit-tap-highlight-color:transparent;
+  }
+
+  body.game-playing .roll-btn{
+    touch-action:manipulation!important;
+  }
+}
+
+/* v104 fin */
