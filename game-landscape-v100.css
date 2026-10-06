@@ -117,3 +117,104 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden}
 }
 
 /* Build trigger: landscape Android package verification. */
+
+/* v103 — auditoría de colisiones visuales en Android horizontal
+   Objetivo: ningún icono, número, ficha o control debe montarse sobre otro. */
+@media (orientation:landscape){
+  body.game-playing .zigzag-board .cell{
+    box-sizing:border-box!important;
+  }
+
+  /* Las fichas quedan suficientemente pequeñas para dejar visibles número e icono. */
+  body.game-playing .zigzag-board .board-token{
+    width:clamp(18px,2.8vh,30px)!important;
+    height:clamp(18px,2.8vh,30px)!important;
+    min-width:18px!important;
+    min-height:18px!important;
+    max-width:30px!important;
+    max-height:30px!important;
+  }
+
+  /* Los indicadores semánticos ocupan zonas distintas de cada casilla. */
+  body.game-playing .zigzag-board .cell-number{
+    left:6px!important;
+    top:4px!important;
+    z-index:2!important;
+    pointer-events:none!important;
+  }
+  body.game-playing .zigzag-board .cell-icon{
+    right:50%!important;
+    bottom:4px!important;
+    z-index:2!important;
+    pointer-events:none!important;
+  }
+
+  /* La META queda en el hueco central; la ficha de la casilla 80 siempre queda visible. */
+  body.game-playing .zigzag-board .goal{
+    z-index:20!important;
+    pointer-events:none!important;
+  }
+  body.game-playing .zigzag-board .cell.finish{
+    z-index:80!important;
+  }
+  body.game-playing .zigzag-board .cell.finish .tokens{
+    z-index:90!important;
+    transform:translateZ(0)!important;
+  }
+
+  /* El botón Datos no debe apretar ni desplazar Reiniciar en pantallas pequeñas. */
+  body.game-playing .players-panel .panel-title{
+    display:flex!important;
+    align-items:center!important;
+    gap:5px!important;
+    min-width:0!important;
+  }
+  body.game-playing .players-panel .panel-title h3{
+    flex:1 1 auto!important;
+    min-width:0!important;
+  }
+  body.game-playing .players-panel .panel-title .tiny-btn,
+  body.game-playing .players-panel .panel-title .game-data-btn{
+    flex:0 0 auto!important;
+    white-space:nowrap!important;
+  }
+  body.game-playing .players-panel .game-data-btn{
+    min-width:0!important;
+  }
+}
+
+@media (orientation:landscape) and (max-height:500px){
+  body.game-playing .zigzag-board .board-token{
+    width:clamp(17px,2.7vh,25px)!important;
+    height:clamp(17px,2.7vh,25px)!important;
+  }
+  body.game-playing .zigzag-board .cell-number{
+    left:5px!important;
+    top:3px!important;
+    font-size:clamp(8px,1.55vh,12px)!important;
+  }
+  body.game-playing .zigzag-board .cell-icon{
+    bottom:3px!important;
+    font-size:clamp(10px,2.0vh,16px)!important;
+  }
+  body.game-playing .players-panel .panel-title{
+    gap:3px!important;
+  }
+  body.game-playing .players-panel .game-data-btn{
+    min-height:26px!important;
+    padding:3px 6px!important;
+    font-size:9px!important;
+    border-radius:8px!important;
+  }
+}
+
+/* v103 — evita que el tablero genere desplazamiento interno inesperado. */
+@media (orientation:landscape){
+  body.game-playing .board-card,
+  body.game-playing .spiral-board.zigzag-board{
+    overflow:hidden!important;
+  }
+  body.game-playing .legend-panel{
+    flex:0 0 auto!important;
+  }
+}
