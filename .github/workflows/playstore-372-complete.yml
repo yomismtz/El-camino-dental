@@ -61,10 +61,7 @@ jobs:
           cp index.html play.html privacy.html terms.html site.css teacher.html teacher.css teacher.js \
              exam.html exam.css exam.js legacy-difficulty-audit.js legacy-case-grading-audit.js \
              manifest.webmanifest sw.js nomenclatura-etimologia-questions.js styles-v10.css ui-polish.css game-premium-v93.css character-art.css android-touch-v85.css i18n.js learning-tools.js area-classifier.js accessibility.js app-v10.js android-navigation.js www/
-          cp questions*.js cases*.js expansion-questions-2026.js expansion-cases-2026.js nomenclatura-etimologia-questions.js fundamentos-oclusion.js fundamentos-casos.js \
-             steiner-questions.js steiner-cases.js fisiologia-funcion-questions.js \
-             fisiologia-funcion-cases.js crecimiento-desarrollo-questions.js \
-             crecimiento-desarrollo-cases.js habitos-parafunciones-*.js primer-parcial-questions.js www/
+          cp *.js www/
           cp -r brand www/
 
       - name: Audit bundled JavaScript and HTML references
