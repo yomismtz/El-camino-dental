@@ -1032,3 +1032,81 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden}
   body.game-playing .zigzag-board .board-token.active{width:clamp(21px,3.1vh,29px)!important;height:clamp(21px,3.1vh,29px)!important}
 }
 /* v109 fin */
+
+
+/* v110 — tablero panorámico desplazable para 100 casillas.
+   La superficie es deliberadamente mayor que la ventana visible: se navega
+   con el dedo y el turno centra automáticamente la ficha activa. */
+@media (orientation:landscape){
+  body.game-playing .board-card{
+    overflow:auto!important;
+    overscroll-behavior:contain!important;
+    touch-action:pan-x pan-y!important;
+    scrollbar-width:auto!important;
+    scrollbar-color:#78a8bd #eaf3f6!important;
+    -webkit-overflow-scrolling:touch!important;
+    display:block!important;
+    position:relative!important;
+  }
+  body.game-playing .board-card::-webkit-scrollbar{
+    width:12px!important;height:12px!important;
+  }
+  body.game-playing .board-card::-webkit-scrollbar-track{
+    background:#eaf3f6!important;border-radius:10px!important;
+  }
+  body.game-playing .board-card::-webkit-scrollbar-thumb{
+    background:#78a8bd!important;border-radius:10px!important;border:2px solid #eaf3f6!important;
+  }
+  body.game-playing .spiral-board.zigzag-board{
+    width:1100px!important;
+    height:900px!important;
+    min-width:1100px!important;
+    min-height:900px!important;
+    max-width:none!important;
+    max-height:none!important;
+    aspect-ratio:auto!important;
+    margin:14px auto 24px!important;
+    flex:none!important;
+  }
+  body.game-playing .zigzag-board .cell{
+    position:absolute!important;
+    left:calc((var(--col) + .5) * 10%)!important;
+    top:calc((var(--row) + .5) * 10%)!important;
+  }
+  body.game-playing .zigzag-board .cell:nth-child(10n):not(.finish)::after{
+    height:8px!important;
+  }
+  body.game-playing .zigzag-board .cell:nth-child(20n+11):not(.finish)::after,
+  body.game-playing .zigzag-board .cell:nth-child(20n+12):not(.finish)::after,
+  body.game-playing .zigzag-board .cell:nth-child(20n+13):not(.finish)::after,
+  body.game-playing .zigzag-board .cell:nth-child(20n+14):not(.finish)::after,
+  body.game-playing .zigzag-board .cell:nth-child(20n+15):not(.finish)::after,
+  body.game-playing .zigzag-board .cell:nth-child(20n+16):not(.finish)::after,
+  body.game-playing .zigzag-board .cell:nth-child(20n+17):not(.finish)::after,
+  body.game-playing .zigzag-board .cell:nth-child(20n+18):not(.finish)::after,
+  body.game-playing .zigzag-board .cell:nth-child(20n+19):not(.finish)::after{
+    right:calc(100% - 1px)!important;
+    left:auto!important;
+  }
+  body.game-playing .zigzag-board .start-marker{
+    left:3.2%!important;
+    top:3.2%!important;
+  }
+  body.game-playing .zigzag-board .goal{
+    left:50%!important;
+    top:50%!important;
+  }
+}
+
+/* En teléfonos horizontales conservamos el tablero grande: el usuario lo
+   recorre con el dedo en vez de comprimir las 100 casillas. */
+@media (orientation:landscape) and (max-width:900px){
+  body.game-playing .spiral-board.zigzag-board{
+    width:1000px!important;
+    height:820px!important;
+    min-width:1000px!important;
+    min-height:820px!important;
+  }
+}
+
+/* v110 fin */
