@@ -778,3 +778,118 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden}
 }
 
 /* v106.2 — trigger APK de prueba */
+
+
+/* v107 — barras de desplazamiento visibles y desplazamiento táctil restaurado.
+   Se mantienen los paneles compactos, pero el usuario puede identificar y usar
+   claramente el scroll vertical y horizontal en las pantallas que lo necesitan. */
+@media (orientation:landscape){
+  html, body{
+    overflow-x:auto!important;
+    overflow-y:auto!important;
+    scrollbar-width:auto!important;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  #setup.screen.active .setup-form::-webkit-scrollbar,
+  #setup.screen.active .area-picker-groups::-webkit-scrollbar,
+  body.game-playing .score-list::-webkit-scrollbar,
+  #questionDialog .question-card::-webkit-scrollbar,
+  #studyDialog .study-card::-webkit-scrollbar,
+  #clinicalCasesDialog .modal-card::-webkit-scrollbar{
+    width:12px!important;
+    height:12px!important;
+  }
+
+  html::-webkit-scrollbar-thumb,
+  body::-webkit-scrollbar-thumb,
+  #setup.screen.active .setup-form::-webkit-scrollbar-thumb,
+  #setup.screen.active .area-picker-groups::-webkit-scrollbar-thumb,
+  body.game-playing .score-list::-webkit-scrollbar-thumb,
+  #questionDialog .question-card::-webkit-scrollbar-thumb,
+  #studyDialog .study-card::-webkit-scrollbar-thumb,
+  #clinicalCasesDialog .modal-card::-webkit-scrollbar-thumb{
+    background:rgba(80,95,110,.72)!important;
+    border-radius:8px!important;
+    border:2px solid transparent!important;
+    background-clip:padding-box!important;
+  }
+
+  html::-webkit-scrollbar-track,
+  body::-webkit-scrollbar-track,
+  #setup.screen.active .setup-form::-webkit-scrollbar-track,
+  #setup.screen.active .area-picker-groups::-webkit-scrollbar-track,
+  body.game-playing .score-list::-webkit-scrollbar-track,
+  #questionDialog .question-card::-webkit-scrollbar-track,
+  #studyDialog .study-card::-webkit-scrollbar-track,
+  #clinicalCasesDialog .modal-card::-webkit-scrollbar-track{
+    background:rgba(180,190,200,.22)!important;
+    border-radius:8px!important;
+  }
+
+  #setup.screen.active,
+  #setup.screen.active .setup-card,
+  #setup.screen.active .setup-form,
+  #setup.screen.active .area-picker-panel,
+  #setup.screen.active .area-picker-groups{
+    touch-action:pan-x pan-y!important;
+  }
+
+  #setup.screen.active .setup-form{
+    overflow:auto!important;
+    scrollbar-width:auto!important;
+  }
+
+  #setup.screen.active .area-picker-groups{
+    overflow:auto!important;
+    scrollbar-width:auto!important;
+  }
+
+  body.game-playing .score-list{
+    overflow:auto!important;
+    scrollbar-width:auto!important;
+    touch-action:pan-x pan-y!important;
+  }
+
+  #questionDialog .question-card,
+  #studyDialog .study-card,
+  #clinicalCasesDialog .modal-card,
+  #rulesDialog .modal-card,
+  #characterBookDialog .modal-card,
+  #tutorialDialog .modal-card{
+    overflow:auto!important;
+    scrollbar-width:auto!important;
+    touch-action:pan-x pan-y!important;
+  }
+
+  /* Evita que capas transparentes intercepten el gesto de desplazamiento. */
+  body.game-playing .board-decoration,
+  body.game-playing .goal{
+    pointer-events:none!important;
+  }
+}
+
+@media (orientation:portrait){
+  html, body{
+    overflow-x:auto!important;
+    overflow-y:auto!important;
+    scrollbar-width:auto!important;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar{
+    width:12px!important;
+    height:12px!important;
+  }
+
+  html::-webkit-scrollbar-thumb,
+  body::-webkit-scrollbar-thumb{
+    background:rgba(80,95,110,.72)!important;
+    border-radius:8px!important;
+    border:2px solid transparent!important;
+    background-clip:padding-box!important;
+  }
+}
+
+/* v107 fin */
