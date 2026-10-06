@@ -684,3 +684,95 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden}
     border-radius:12px!important;
   }
 }
+
+
+/* v106 — selector de categorías: ninguna especialidad queda fuera de cuadro.
+   El listado tiene scroll propio; encabezado, contador y botones permanecen
+   dentro del formulario y nunca quedan cubiertos por otra capa. */
+@media (orientation:landscape){
+  #setup.screen.active .setup-form{
+    min-height:0!important;
+    min-width:0!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    scrollbar-width:thin!important;
+  }
+
+  #setup.screen.active .area-picker-panel{
+    display:flex!important;
+    flex-direction:column!important;
+    min-height:0!important;
+    max-height:none!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+  }
+
+  #setup.screen.active .area-picker-head{
+    flex:0 0 auto!important;
+  }
+
+  #setup.screen.active .area-picker-actions{
+    flex:0 0 auto!important;
+  }
+
+  #setup.screen.active .area-picker-groups{
+    flex:1 1 auto!important;
+    min-height:120px!important;
+    max-height:42vh!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    padding:2px 4px 8px 1px!important;
+    scrollbar-width:thin!important;
+    overscroll-behavior:contain!important;
+    box-sizing:border-box!important;
+  }
+
+  #setup.screen.active .area-group{
+    min-width:0!important;
+  }
+
+  #setup.screen.active .area-choice-grid{
+    min-width:0!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  }
+
+  #setup.screen.active .area-choice{
+    min-width:0!important;
+    width:100%!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+  }
+
+  #setup.screen.active .area-choice b,
+  #setup.screen.active .area-choice small{
+    min-width:0!important;
+    overflow-wrap:anywhere!important;
+    word-break:normal!important;
+  }
+
+  #setup.screen.active .area-choice small{
+    display:block!important;
+  }
+}
+
+@media (orientation:landscape) and (max-height:760px){
+  #setup.screen.active .area-picker-groups{
+    max-height:40vh!important;
+  }
+}
+
+@media (orientation:landscape) and (max-height:500px){
+  #setup.screen.active .area-picker-groups{
+    max-height:34vh!important;
+    min-height:95px!important;
+  }
+
+  #setup.screen.active .area-choice-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:5px!important;
+  }
+
+  #setup.screen.active .area-choice{
+    padding:7px!important;
+  }
+}
