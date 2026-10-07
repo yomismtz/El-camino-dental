@@ -1145,3 +1145,129 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden}
   }
 }
 /* v112 fin */
+
+
+/* v113 — Mejora 1: pantalla inicial más clara y premium.
+   Solo presentación; no modifica mecánicas, preguntas ni flujo de juego. */
+@media (orientation:landscape){
+  #setup.screen.active{
+    position:relative!important;
+    background:
+      radial-gradient(circle at 8% 18%,rgba(39,139,255,.10),transparent 28%),
+      radial-gradient(circle at 88% 78%,rgba(21,190,153,.10),transparent 30%),
+      transparent!important;
+  }
+  #setup.screen.active .setup-card{
+    position:relative!important;
+    grid-template-columns:minmax(0,1.05fr) minmax(390px,.95fr)!important;
+    gap:24px!important;
+    padding:clamp(18px,2.5vw,34px)!important;
+    border:1px solid rgba(255,255,255,.96)!important;
+    box-shadow:0 18px 45px rgba(42,76,119,.14),0 2px 0 rgba(255,255,255,.9) inset!important;
+    overflow:visible!important;
+  }
+  #setup.screen.active .setup-copy{
+    min-width:0!important;
+    position:relative!important;
+    padding:clamp(6px,1vw,18px)!important;
+  }
+  #setup.screen.active .setup-copy:after{
+    content:"🦷"!important;
+    position:absolute!important;
+    right:4%!important;
+    bottom:2%!important;
+    width:clamp(62px,7vw,100px)!important;
+    height:clamp(62px,7vw,100px)!important;
+    display:grid!important;
+    place-items:center!important;
+    border-radius:50%!important;
+    background:linear-gradient(145deg,#eefaff,#effcf7)!important;
+    border:1px solid rgba(55,157,190,.18)!important;
+    box-shadow:0 12px 28px rgba(39,115,151,.12)!important;
+    font-size:clamp(30px,4vw,52px)!important;
+    transform:rotate(6deg)!important;
+    pointer-events:none!important;
+  }
+  #setup.screen.active .setup-copy .pill{
+    background:linear-gradient(135deg,#eaf6ff,#effcf8)!important;
+    border:1px solid rgba(39,139,255,.14)!important;
+    box-shadow:0 5px 14px rgba(39,139,255,.08)!important;
+  }
+  #setup.screen.active .setup-copy h1{
+    max-width:760px!important;
+    font-size:clamp(38px,5.2vw,76px)!important;
+    line-height:.92!important;
+    color:#164c70!important;
+  }
+  #setup.screen.active .setup-copy p{
+    max-width:700px!important;
+    line-height:1.45!important;
+  }
+  #setup.screen.active .feature-row{
+    max-width:720px!important;
+    gap:8px!important;
+  }
+  #setup.screen.active .feature-row span{
+    padding:9px 12px!important;
+    border:1px solid #e2edf4!important;
+    border-radius:14px!important;
+    color:#315b73!important;
+    background:rgba(255,255,255,.86)!important;
+  }
+  #setup.screen.active .setup-form{
+    position:relative!important;
+    border:1px solid rgba(120,183,207,.24)!important;
+    box-shadow:0 12px 30px rgba(45,87,112,.09),inset 0 1px 0 #fff!important;
+  }
+  #setup.screen.active .setup-form:before{
+    content:"CONFIGURA TU PARTIDA"!important;
+    display:block!important;
+    margin:0 0 10px!important;
+    padding-bottom:9px!important;
+    border-bottom:1px solid #dcebf2!important;
+    color:#2a7595!important;
+    font:900 10px/1 system-ui,sans-serif!important;
+    letter-spacing:.14em!important;
+  }
+  #setup.screen.active .setup-form>label{
+    color:#275873!important;
+  }
+  #setup.screen.active .setup-form select{
+    transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease!important;
+  }
+  #setup.screen.active .setup-form select:focus{
+    border-color:#51b9d8!important;
+    box-shadow:0 0 0 4px rgba(81,185,216,.13)!important;
+  }
+  #setup.screen.active .actions .btn.primary{
+    min-height:48px!important;
+    background:linear-gradient(135deg,#278bff,#18bca3)!important;
+    box-shadow:0 10px 22px rgba(39,139,255,.20)!important;
+  }
+  #setup.screen.active .actions .btn.secondary{
+    min-height:48px!important;
+  }
+}
+@media (orientation:landscape) and (max-height:700px){
+  #setup.screen.active .setup-card{gap:16px!important;padding:14px 18px!important}
+  #setup.screen.active .setup-copy h1{font-size:clamp(32px,5vw,58px)!important}
+  #setup.screen.active .setup-copy p{font-size:14px!important;margin:10px 0!important}
+  #setup.screen.active .feature-row{margin-top:12px!important}
+  #setup.screen.active .feature-row span{padding:6px 9px!important;font-size:11px!important}
+}
+@media (orientation:landscape) and (max-height:500px){
+  #setup.screen.active .setup-card{
+    grid-template-columns:minmax(0,1fr) minmax(320px,.9fr)!important;
+    gap:10px!important;padding:9px 12px!important;
+  }
+  #setup.screen.active .setup-copy{padding:2px 6px!important}
+  #setup.screen.active .setup-copy .pill{font-size:8px!important;padding:5px 8px!important}
+  #setup.screen.active .setup-copy h1{font-size:clamp(27px,4.6vw,43px)!important}
+  #setup.screen.active .setup-copy p{font-size:11px!important;line-height:1.25!important}
+  #setup.screen.active .feature-row{gap:5px!important;margin-top:7px!important}
+  #setup.screen.active .feature-row span{padding:5px 7px!important;font-size:9px!important}
+  #setup.screen.active .setup-copy:after{width:48px!important;height:48px!important;font-size:25px!important}
+  #setup.screen.active .setup-form{padding:12px!important}
+  #setup.screen.active .setup-form:before{margin-bottom:7px!important;padding-bottom:6px!important;font-size:8px!important}
+}
+/* v113 fin */
