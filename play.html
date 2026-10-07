@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="step11-characters.css">
     <link rel="stylesheet" href="step17-study.css">
     <link rel="stylesheet" href="game-landscape-v100.css">
+    <link rel="stylesheet" href="home-launcher-v1.css">
 
 </head>
 <body>
@@ -45,12 +46,19 @@
   <section id="setup" class="screen active">
     <div class="setup-card glass-card">
       <div class="setup-copy">
+        <div class="home-hero"><img class="home-hero-logo" src="brand/logo-el-camino-dental.svg" alt="El Camino Dental"><span class="home-hero-badge">🦷 Plataforma educativa odontológica</span></div>
         <span class="pill">🎲🎲 2 dados · 100 casillas · Meta al centro</span>
         <h1>Aprender odontología jugando. 🦷</h1>
         <p>Forma de 2 a 5 jugadores o equipos. Cada participante elige un personaje distinto y recorre un tablero de 100 casillas en zigzag hasta llegar a la meta.</p>
         <div class="feature-row">
           <span>🧠 Preguntas odontológicas</span><span>📋 Casos clínicos</span><span>🤖 Vs computadora</span><span>🎵 Música + efectos</span><span>👥 2–5 jugadores</span><span>🏆 Meta 100</span>
         </div>
+        <nav class="home-quick-actions" aria-label="Accesos principales">
+          <button type="button" class="home-action home-action-primary" data-home-action="play"><span class="home-action-icon">🎲</span><span><b>Jugar</b><small>Inicia una partida</small></span><strong>→</strong></button>
+          <button type="button" class="home-action" data-home-action="study"><span class="home-action-icon">📚</span><span><b>Estudiar</b><small>Practica por especialidad</small></span><strong>→</strong></button>
+          <button type="button" class="home-action" data-home-action="cases"><span class="home-action-icon">🩺</span><span><b>Casos clínicos</b><small>Entrena tu razonamiento</small></span><strong>→</strong></button>
+          <a class="home-action" href="exam.html"><span class="home-action-icon">📝</span><span><b>Examen</b><small>Evalúa tus conocimientos</small></span><strong>→</strong></a>
+        </nav>
       </div>
       <div class="setup-form">
         <label class="module-selector">Módulo de preguntas
@@ -358,6 +366,7 @@
 <script src="legacy-case-grading-audit.js"></script>
 <script src="endodoncia-questions-2026.js"></script><script src="ortodoncia-questions-2026.js"></script><script src="step16-question-integrity.js"></script>
 <script src="step23-recovery-runtime.js"></script><script src="step17-study-runtime.js"></script><script src="step20-clinical-cases.js"></script><script src="step21-bluetooth-runtime.js"></script>
+<script src="home-launcher-v1.js"></script>
 <script src="app-v10.js"></script><script src="step9-characters-runtime.js"></script><script src="step10-profile-runtime.js"></script><script src="step11-characters-runtime.js"></script><script src="step12-question-audit.js"></script><script src="step13-question-catalog.js"></script>
 <script src="step24-content-audit.js"></script>
 <script src="odontologia-preventiva-questions-2026.js"></script>
