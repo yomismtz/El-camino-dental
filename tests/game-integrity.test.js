@@ -158,14 +158,11 @@ assert.strictEqual(expCIds.length,145,'La expansión debe aportar exactamente 14
 assert.strictEqual(new Set(expCIds).size,145,'Los 145 casos nuevos deben tener IDs únicos');
 assert(html.includes('src="expansion-questions-2026.js"'),'play.html debe cargar las 200 preguntas nuevas');
 assert(html.includes('src="expansion-cases-2026.js"'),'play.html debe cargar los 145 casos nuevos');
-assert(html.includes('1000 preguntas')&&html.includes('500 casos clínicos'),'La interfaz debe mostrar los nuevos totales');
-
-
-assert(html.includes('1000 preguntas')&&html.includes('500 casos clínicos'),'play.html debe mostrar 1000 preguntas y 500 casos');
+assert(html.includes('Preguntas odontológicas')&&html.includes('Casos clínicos')&&html.includes('Meta 100'),'La interfaz debe mostrar información actualizada del juego');
 const home=fs.readFileSync('index.html','utf8');
 const examHtml=fs.readFileSync('exam.html','utf8');
-assert(home.includes('1000 preguntas')&&home.includes('500 casos clínicos'),'La portada debe mostrar los totales 1000/500');
-assert(!home.includes('800 preguntas')&&!home.includes('355 casos clínicos'),'La portada no debe conservar totales anteriores');
+assert(home.includes('Preguntas odontológicas')&&home.includes('Casos clínicos')&&home.includes('Meta 100'),'La portada debe mostrar información actualizada del juego');
+assert(!home.includes('800 preguntas')&&!home.includes('355 casos clínicos')&&!home.includes('1000 preguntas')&&!home.includes('500 casos clínicos'),'La portada no debe conservar totales obsoletos');
 assert(examHtml.includes('src="expansion-questions-2026.js"'),'Modo Examen debe cargar las 200 preguntas nuevas');
 assert(classifier.includes("id:'anestesia'")&&classifier.includes("id:'implantologia'"),'El selector personalizado debe incluir Anestesia e Implantología');
 
