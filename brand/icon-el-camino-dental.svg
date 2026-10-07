@@ -1,58 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
 <title id="title">El Camino Dental</title>
-<desc id="desc">Diente blanco con carretera azul en bucle y amanecer.</desc>
+<desc id="desc">Icono minimalista de una muela blanca con un camino azul y turquesa.</desc>
 <defs>
-  <linearGradient id="bg" x1=".1" y1=".05" x2=".9" y2="1">
-    <stop stop-color="#eefaff"/>
-    <stop offset=".55" stop-color="#ffffff"/>
-    <stop offset="1" stop-color="#e9fbf6"/>
-  </linearGradient>
-  <linearGradient id="tooth" x1=".18" y1=".05" x2=".75" y2="1">
-    <stop stop-color="#fff"/>
-    <stop offset=".67" stop-color="#f5fbff"/>
-    <stop offset="1" stop-color="#cbeeff"/>
-  </linearGradient>
-  <linearGradient id="road" x1=".05" y1=".25" x2=".95" y2=".75">
-    <stop stop-color="#063e84"/>
-    <stop offset=".52" stop-color="#075da8"/>
-    <stop offset="1" stop-color="#087fc0"/>
-  </linearGradient>
-  <linearGradient id="rim" x1="0" x2="1">
-    <stop stop-color="#0cc7d8"/>
-    <stop offset="1" stop-color="#25d8bf"/>
-  </linearGradient>
-  <linearGradient id="sun" x1=".2" y1="0" x2=".8" y2="1">
-    <stop stop-color="#ffe06a"/>
-    <stop offset="1" stop-color="#ffad21"/>
-  </linearGradient>
-  <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%">
-    <feDropShadow dx="0" dy="13" stdDeviation="14" flood-color="#0b5686" flood-opacity=".24"/>
-  </filter>
+  <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eaf8ff"/><stop offset="1" stop-color="#ffffff"/></linearGradient>
+  <linearGradient id="road2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#075b9e"/><stop offset="1" stop-color="#0c7fc0"/></linearGradient>
+  <filter id="shadow2" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#075b9e" flood-opacity=".22"/></filter>
 </defs>
-
-<rect x="12" y="12" width="488" height="488" rx="108" fill="url(#bg)" stroke="#9fdfff" stroke-width="5"/>
-
-<g filter="url(#shadow)">
-  <path d="M194 113a62 62 0 0 1 124 0" fill="url(#sun)"/>
-  <g stroke="#ffb326" stroke-width="12" stroke-linecap="round">
-    <path d="M256 44V20"/>
-    <path d="M213 58l-17-18"/>
-    <path d="M299 58l17-18"/>
-    <path d="M188 91l-24-7"/>
-    <path d="M324 91l24-7"/>
-  </g>
-
-  <path d="M155 96c-43 0-78 26-93 71-18 55 6 109 32 161 23 47 17 96 45 114 20 13 39-3 50-40 14-46 29-65 46-65s32 19 46 65c11 37 30 53 50 40 28-18 22-67 45-114 26-52 50-106 32-161-15-45-50-71-93-71-36 0-61 24-80 24s-44-24-80-24Z"
-        fill="url(#tooth)" stroke="#2b9bd4" stroke-width="10"/>
-
-  <path d="M82 220c38-51 103-69 176-62 68 7 123 40 138 79 15 39-17 81-76 108-70 31-166 31-235-1-57-27-78-71-53-108 11-16 28-29 50-39Z"
-        fill="none" stroke="url(#rim)" stroke-width="68" stroke-linecap="round"/>
-  <path d="M82 220c38-51 103-69 176-62 68 7 123 40 138 79 15 39-17 81-76 108-70 31-166 31-235-1-57-27-78-71-53-108 11-16 28-29 50-39Z"
-        fill="none" stroke="url(#road)" stroke-width="56" stroke-linecap="round"/>
-
-  <path d="M66 238c23-21 51-37 84-47M200 171c26-2 52 0 76 5M320 193c21 10 38 22 50 36M367 274c-15 20-41 37-74 50M238 343c-27 4-55 3-81-2M104 324c-25-11-44-25-54-42"
-        fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-dasharray="28 19"/>
-
-  <path d="M145 139c10-20 24-29 43-32" fill="none" stroke="#fff" stroke-width="15" stroke-linecap="round" opacity=".85"/>
+<rect x="10" y="10" width="492" height="492" rx="112" fill="url(#bg2)" stroke="#a7e1f3" stroke-width="6"/>
+<g filter="url(#shadow2)">
+  <path d="M156 88c-43 0-78 26-95 71-20 54 4 110 31 163 24 48 18 97 47 117 22 15 43-2 55-42 14-46 29-65 62-65s48 19 62 65c12 40 33 57 55 42 29-20 23-69 47-117 27-53 51-109 31-163-17-45-52-71-95-71-38 0-65 25-100 25s-62-25-100-25Z" fill="#fff" stroke="#1587c7" stroke-width="11"/>
+  <path d="M76 249c35-53 93-78 162-76 69 2 132 30 164 72 25 33 17 65-13 91-38 33-100 53-169 52-69-1-129-22-164-56-27-26-32-53-12-83 8-12 18-23 32-33Z" fill="none" stroke="#16c7d4" stroke-width="72" stroke-linecap="round"/>
+  <path d="M76 249c35-53 93-78 162-76 69 2 132 30 164 72 25 33 17 65-13 91-38 33-100 53-169 52-69-1-129-22-164-56-27-26-32-53-12-83 8-12 18-23 32-33Z" fill="none" stroke="url(#road2)" stroke-width="56" stroke-linecap="round"/>
+  <path d="M73 267l30-24M139 211l34-11M219 192l34 1M292 202l32 11M353 236l27 19M365 298l-27 19M303 335l-34 10M222 350l-34-1M143 335l-31-12" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round"/>
 </g>
 </svg>
