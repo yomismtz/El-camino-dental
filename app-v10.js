@@ -874,10 +874,11 @@ function renderCharacterBook(){
   host.innerHTML=CHARACTERS.map((ch,i)=>`<article class="character-book-item" style="--accent:${ch.color}"><div class="book-art">${characterSprite(ch,'book-character')}</div><div><h3>${ch.name}</h3><b>${ch.role}</b><p>${ch.desc}</p>${ch.ability?`<p><strong>${ch.ability.name}</strong><br><small>${ch.ability.description}</small></p>`:''}<small>“${personaFor(i).correct}”</small></div></article>`).join('')
 }
 const TUTORIAL_STEPS=[
-  {title:'1. Elige qué practicar',text:'En Juego personalizado selecciona de 1 a 5 áreas, además de dificultad y jugadores. El sistema mezcla preguntas y casos clínicos de esas áreas y prioriza lo que necesites repasar.'},
-  {title:'2. Elige tu personaje',text:'Cada jugador toma un personaje distinto. Tu favorito queda preseleccionado la próxima vez, pero puedes cambiarlo cuando quieras.'},
-  {title:'3. Tira los dos dados',text:'Avanzas la suma de ambos dados. Tu personaje aparece en “Ahora juega” y su rostro identifica tu ficha en el tablero.'},
-  {title:'4. Resuelve cada casilla',text:'Azul = pregunta, morado = caso clínico. Las respuestas muestran explicación educativa y tu personaje reacciona al resultado.'}
+  {title:'1. Elige qué practicar',text:'Selecciona un módulo o entra en Juego personalizado para elegir de 1 a 5 áreas. También puedes definir la dificultad y el número de jugadores.'},
+  {title:'2. Elige tu personaje',text:'Cada jugador elige uno de los 10 personajes disponibles. Los personajes son visuales: no cambian la dificultad ni dan ventajas académicas.'},
+  {title:'3. Tira los dos dados',text:'En cada turno pulsa “Tirar los dados”. Avanzas la suma de ambos dados y el tablero centra automáticamente la casilla de tu ficha.'},
+  {title:'4. Resuelve la casilla',text:'Según la casilla puedes encontrar una pregunta, un caso clínico o un evento especial. Responde, revisa la explicación y aplica el movimiento indicado.'},
+  {title:'5. Llega a META',text:'El tablero tiene 100 casillas. La META está en la casilla 100 y debes llegar exactamente para ganar; si te pasas, el movimiento rebota.'}
 ];
 let tutorialIndex=0;
 function renderTutorialStep(){
