@@ -1271,3 +1271,58 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden}
   #setup.screen.active .setup-form:before{margin-bottom:7px!important;padding-bottom:6px!important;font-size:8px!important}
 }
 /* v113 fin */
+
+
+/* v114 — Paso 3: movimiento y llegada más claros */
+@media (orientation:landscape){
+  body.game-playing .dice{
+    will-change:transform,box-shadow;
+    transition:transform .16s ease,box-shadow .16s ease;
+  }
+  body.game-playing .dice.rolling{
+    animation:dice-roll-v114 .24s ease-in-out infinite alternate;
+  }
+  body.game-playing .diceTotal{
+    transition:transform .18s ease,opacity .18s ease;
+  }
+  body.game-playing .board-token.step-hop{
+    animation:token-hop-v114 .22s cubic-bezier(.2,.8,.3,1);
+    z-index:12!important;
+  }
+  body.game-playing .cell.landing-focus{
+    animation:cell-arrival-v114 .76s ease-out;
+    z-index:8!important;
+  }
+  body.game-playing .cell.landed{
+    animation:cell-landed-v114 .62s ease-out;
+    z-index:9!important;
+  }
+  body.game-playing .board-token.active{
+    transition:transform .12s ease,filter .12s ease;
+  }
+}
+@keyframes dice-roll-v114{
+  from{transform:rotate(-7deg) scale(.96)}
+  to{transform:rotate(7deg) scale(1.05)}
+}
+@keyframes token-hop-v114{
+  0%{transform:translate(var(--sx),var(--sy)) translateY(0) scale(1)}
+  45%{transform:translate(var(--sx),var(--sy)) translateY(-13px) scale(1.08)}
+  100%{transform:translate(var(--sx),var(--sy)) translateY(0) scale(1)}
+}
+@keyframes cell-arrival-v114{
+  0%{transform:scale(1);filter:brightness(1)}
+  35%{transform:scale(1.10);filter:brightness(1.18)}
+  100%{transform:scale(1);filter:brightness(1)}
+}
+@keyframes cell-landed-v114{
+  0%{transform:scale(1);box-shadow:0 0 0 rgba(39,139,255,0)}
+  35%{transform:scale(1.07);box-shadow:0 0 0 7px rgba(39,139,255,.18)}
+  100%{transform:scale(1);box-shadow:0 0 0 rgba(39,139,255,0)}
+}
+@media (prefers-reduced-motion:reduce){
+  body.game-playing .dice.rolling,
+  body.game-playing .board-token.step-hop,
+  body.game-playing .cell.landing-focus,
+  body.game-playing .cell.landed{animation:none!important}
+}
