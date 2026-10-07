@@ -1,0 +1,19 @@
+/* El Camino Dental — home launcher v1 */
+#setup.screen.active .setup-copy{position:relative;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.home-hero{display:flex;align-items:center;gap:12px;margin:0 0 10px;min-width:0}
+.home-hero-logo{display:block;width:min(360px,72%);max-width:100%;height:auto;max-height:92px;object-fit:contain;object-position:left center;filter:drop-shadow(0 7px 14px rgba(35,102,132,.13))}
+.home-hero-badge{display:inline-flex;align-items:center;white-space:nowrap;padding:7px 10px;border-radius:999px;background:rgba(232,248,252,.9);border:1px solid #cfe7ee;color:#28627a;font:800 11px/1.15 system-ui,sans-serif}
+.home-quick-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:13px 0 0;min-width:0}
+.home-action{appearance:none;border:1px solid #d8e9ef;background:linear-gradient(145deg,#fff,#f5fbfd);color:#164d70;text-decoration:none;min-width:0;min-height:68px;padding:9px 10px;border-radius:16px;display:grid;grid-template-columns:38px minmax(0,1fr) 18px;align-items:center;gap:9px;text-align:left;box-shadow:0 7px 16px rgba(35,92,116,.08);cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:rgba(39,139,255,.16);transition:transform .14s ease,box-shadow .14s ease,border-color .14s ease}
+.home-action:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(35,92,116,.12);border-color:#b9dce7}
+.home-action:active{transform:translateY(1px)}
+.home-action-primary{border-color:#8ccfe0;background:linear-gradient(145deg,#eefcff,#e8f7f2);box-shadow:0 9px 20px rgba(42,133,157,.13)}
+.home-action-icon{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:#e8f5f8;font-size:21px}
+.home-action b,.home-action small{display:block;min-width:0;overflow-wrap:anywhere}
+.home-action b{font:900 14px/1.1 system-ui,sans-serif}
+.home-action small{margin-top:3px;color:#5b7887;font:600 10px/1.15 system-ui,sans-serif}
+.home-action>strong{font:900 18px/1 system-ui,sans-serif;color:#4b91aa;text-align:right}
+@media (max-width:900px){#setup.screen.active .setup-copy{justify-content:flex-start}.home-hero{align-items:flex-start;flex-direction:column;gap:7px}.home-hero-logo{width:min(330px,90vw);max-height:78px}.home-hero-badge{font-size:10px}}
+@media (max-width:620px){.home-quick-actions{grid-template-columns:1fr}.home-action{min-height:62px}.home-hero-logo{width:min(300px,88vw)}}
+@media (orientation:landscape) and (max-height:760px){#setup.screen.active .setup-copy{justify-content:flex-start;overflow:auto!important;padding-right:4px;scrollbar-width:thin}.home-hero{margin-bottom:6px}.home-hero-logo{width:min(300px,62%);max-height:66px}.home-hero-badge{font-size:9px;padding:5px 8px}.home-quick-actions{gap:6px;margin-top:8px}.home-action{min-height:54px;padding:7px 8px;border-radius:13px;grid-template-columns:32px minmax(0,1fr) 14px;gap:7px}.home-action-icon{width:32px;height:32px;border-radius:9px;font-size:18px}.home-action b{font-size:12px}.home-action small{font-size:9px}.home-action>strong{font-size:15px}}
+@media (orientation:landscape) and (max-height:500px){.home-hero-logo{width:min(240px,52%);max-height:48px}.home-hero-badge{display:none}.home-quick-actions{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.home-action{min-height:48px;grid-template-columns:28px minmax(0,1fr);padding:5px 6px}.home-action-icon{width:28px;height:28px;font-size:15px}.home-action>strong{display:none}.home-action b{font-size:10px}.home-action small{font-size:8px}}
