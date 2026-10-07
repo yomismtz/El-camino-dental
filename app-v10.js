@@ -579,7 +579,25 @@ async function rollDice(auto=false){haptic('dice');
   if(overshoot>0)statusText.textContent=`${p.name} llegó a la meta, se pasó por ${overshoot} y regresó hasta la casilla ${state.players[state.current].position}.`;
   transitionTimer=setTimeout(()=>{transitionTimer=null;if(token===turnActionToken&&state?.players[state.current]===p)triggerCell(p.position,0,token)},overshoot>0?520:180)
 }
-async function animateToPosition(p,target){const step=target>=p.position?1:-1;while(p.position!==target){p.position+=step;render();tone('step');await delay(105)}}
+async function animateToPosition(p,target){
+  const step=target>=p.position?1:-1;
+  let tick=0;
+  while(p.position!==target){
+    p.position+=step;
+    render();
+    const cell=document.querySelector(`[data-cell="${p.position}"]`);
+    const token=cell?.querySelector('.board-token.active');
+    if(token){
+      token.classList.remove('step-hop');
+      void token.offsetWidth;
+      token.classList.add('step-hop');
+      setTimeout(()=>token.classList.remove('step-hop'),220);
+    }
+    if(++tick%2===0)focusCurrentCell(false);
+    tone('step');
+    await delay(105);
+  }
+}
 async function moveWithFinishBounce(delta){
   const p=state.players[state.current],raw=p.position+delta;
   if(delta>0&&raw>BOARD_END){
@@ -590,12 +608,28 @@ async function moveWithFinishBounce(delta){
   }else{
     await animateToPosition(p,Math.max(0,Math.min(BOARD_END,raw)));
   }
-  const landed=document.querySelector(`[data-cell="${p.position}"]`);if(landed){landed.classList.add('landed');setTimeout(()=>landed.classList.remove('landed'),420)}
+  const landed=document.querySelector(`[data-cell="${p.position}"]`);
+  if(landed){
+    landed.classList.remove('landed');
+    void landed.offsetWidth;
+    landed.classList.add('landed');
+    focusCurrentCell(true);
+    setTimeout(()=>landed.classList.remove('landed'),620);
+  }
 }
 async function move(delta){const p=state.players[state.current];await animateToPosition(p,Math.max(0,Math.min(BOARD_END,p.position+delta)));const landed=document.querySelector(`[data-cell="${p.position}"]`);if(landed){landed.classList.add('landed');setTimeout(()=>landed.classList.remove('landed'),420)}}
 function invalidateTurnAction(){turnActionToken++;if(transitionTimer){clearTimeout(transitionTimer);transitionTimer=null}}
 function resolveLanding(depth=0,token=turnActionToken){if(!state||token!==turnActionToken)return;const p=state.players[state.current];if(p.position>=BOARD_END)return showWinner(p);if(depth>=8){statusText.textContent='Cadena de eventos terminada. Siguiente turno.';transitionTimer=setTimeout(()=>{transitionTimer=null;if(token===turnActionToken)endTurn()},420);return}return triggerCell(p.position,depth,token)}
-function triggerCell(cell,depth=0,token=turnActionToken){if(token!==turnActionToken||!state)return;const r=ruleForCell(cell);if(r.type==='question')return startQuestion(r.deck,depth);if(r.type==='case')return state?.module==='nomenclatura_etimologia'?startQuestion(r.deck,depth):startCase(r.deck,depth);if(r.type==='advance1')return movement('advance1',1,depth,token);if(r.type==='advance2')return movement('advance2',2,depth,token);if(r.type==='back1')return movement('back1',-1,depth,token);if(r.type==='back2')return movement('back2',-2,depth,token);if(r.type==='back3')return movement('back3',-3,depth,token);if(r.type==='vacation')return loseTurnEvent('vacation','Vacaciones',1);if(r.type==='tax')return loseTurnEvent('tax','Impuestos',1);if(r.type==='equipment')return loseTurnEvent('equipment','Equipo descompuesto',1);if(r.type==='lawsuit')return lawsuit(depth,token);if(r.type==='jail')return jail();if(r.type==='specialShield')return specialCell('specialShield');if(r.type==='specialBoost')return specialCell('specialBoost');if(r.type==='specialBonus')return specialCell('specialBonus');if(r.type==='finish')return showWinner(state.players[state.current]);statusText.textContent='Casilla de descanso. Siguiente turno.';transitionTimer=setTimeout(()=>{transitionTimer=null;if(token===turnActionToken)endTurn()},420)}
+function triggerCell(cell,depth=0,token=turnActionToken){
+  if(token!==turnActionToken||!state)return;
+  const landingCell=document.querySelector(`[data-cell="${cell}"]`);
+  if(landingCell){
+    landingCell.classList.remove('landing-focus');
+    void landingCell.offsetWidth;
+    landingCell.classList.add('landing-focus');
+    setTimeout(()=>landingCell.classList.remove('landing-focus'),760);
+  }
+  const r=ruleForCell(cell);if(r.type==='question')return startQuestion(r.deck,depth);if(r.type==='case')return state?.module==='nomenclatura_etimologia'?startQuestion(r.deck,depth):startCase(r.deck,depth);if(r.type==='advance1')return movement('advance1',1,depth,token);if(r.type==='advance2')return movement('advance2',2,depth,token);if(r.type==='back1')return movement('back1',-1,depth,token);if(r.type==='back2')return movement('back2',-2,depth,token);if(r.type==='back3')return movement('back3',-3,depth,token);if(r.type==='vacation')return loseTurnEvent('vacation','Vacaciones',1);if(r.type==='tax')return loseTurnEvent('tax','Impuestos',1);if(r.type==='equipment')return loseTurnEvent('equipment','Equipo descompuesto',1);if(r.type==='lawsuit')return lawsuit(depth,token);if(r.type==='jail')return jail();if(r.type==='specialShield')return specialCell('specialShield');if(r.type==='specialBoost')return specialCell('specialBoost');if(r.type==='specialBonus')return specialCell('specialBonus');if(r.type==='finish')return showWinner(state.players[state.current]);statusText.textContent='Casilla de descanso. Siguiente turno.';transitionTimer=setTimeout(()=>{transitionTimer=null;if(token===turnActionToken)endTurn()},420)}
 function startQuestion(deck,chainDepth=0){if(state&&!state.roundActive)beginRound();if(state)state.pendingResolution={position:currentPlayer()?.position??0,depth:chainDepth};step5Phase('thinking',tr('Piensa la respuesta','Think about the answer'));const bank=activeQuestionBank(),q=pickQueued(bank,'questionQueue','questionQueueSize','lastQuestionIndex');if(!q)return endTurn();pendingQuestion=randomizePresentedItem({...q,kind:'question',chainDepth},'question');selectedAnswer=null;tone('question');saveGame();showQuestion()}
 function startCase(deck,chainDepth=0){if(state&&!state.roundActive)beginRound();if(state)state.pendingResolution={position:currentPlayer()?.position??0,depth:chainDepth};const bank=activeCaseBank();if(!bank.length&&state?.module==='personalizado')return startQuestion(deck,chainDepth);const q=pickQueued(bank,'caseQueue','caseQueueSize','lastCaseIndex');if(!q)return endTurn();pendingQuestion=randomizePresentedItem({...q,kind:'case',chainDepth},'case');selectedAnswer=null;tone('case');saveGame();showQuestion()}
 function renderQuestionCharacter(mode='neutral'){
