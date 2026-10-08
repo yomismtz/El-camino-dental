@@ -1326,3 +1326,71 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden}
   body.game-playing .cell.landing-focus,
   body.game-playing .cell.landed{animation:none!important}
 }
+
+
+/* v115 — Mejora 1: dados más claros y táctiles */
+@media (orientation:landscape){
+  body.game-playing .dice-row .die{
+    position:relative!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    transform-origin:center!important;
+    will-change:transform,filter,box-shadow!important;
+    transition:transform .16s ease,filter .16s ease,box-shadow .16s ease!important;
+  }
+  body.game-playing .dice-row .die.rolling{
+    animation:dice-roll-v115 .30s ease-in-out infinite!important;
+    filter:brightness(1.08)!important;
+  }
+  body.game-playing .dice-row .die.dice-shake{
+    animation:dice-shake-v115 .16s ease-in-out!important;
+  }
+  body.game-playing .dice-row .die.dice-result{
+    animation:dice-result-v115 .40s cubic-bezier(.2,.85,.3,1)!important;
+    box-shadow:0 0 0 4px rgba(39,139,255,.14),0 8px 18px rgba(23,83,112,.18)!important;
+  }
+  body.game-playing .dice-total{
+    position:relative!important;
+    font-weight:800!important;
+  }
+  body.game-playing .dice-total .dice-total-pop,
+  body.game-playing .dice-total.dice-total-pop{
+    animation:dice-total-pop-v115 .36s cubic-bezier(.2,.9,.3,1)!important;
+  }
+  body.game-playing .roll-btn:not(:disabled){
+    box-shadow:0 5px 12px rgba(23,101,138,.18)!important;
+  }
+  body.game-playing .roll-btn:disabled{
+    opacity:.62!important;
+    cursor:wait!important;
+  }
+}
+@keyframes dice-roll-v115{
+  0%{transform:rotate(-8deg) scale(.94) translateY(1px)}
+  50%{transform:rotate(8deg) scale(1.06) translateY(-2px)}
+  100%{transform:rotate(-8deg) scale(.94) translateY(1px)}
+}
+@keyframes dice-shake-v115{
+  0%{transform:translateX(0) rotate(0)}
+  25%{transform:translateX(-4px) rotate(-5deg)}
+  50%{transform:translateX(4px) rotate(5deg)}
+  75%{transform:translateX(-3px) rotate(-3deg)}
+  100%{transform:translateX(0) rotate(0)}
+}
+@keyframes dice-result-v115{
+  0%{transform:scale(.86) rotate(-3deg)}
+  55%{transform:scale(1.13) rotate(2deg)}
+  100%{transform:scale(1) rotate(0)}
+}
+@keyframes dice-total-pop-v115{
+  0%{transform:scale(.86);opacity:.55}
+  55%{transform:scale(1.22);opacity:1}
+  100%{transform:scale(1);opacity:1}
+}
+@media (prefers-reduced-motion:reduce){
+  body.game-playing .dice-row .die.rolling,
+  body.game-playing .dice-row .die.dice-shake,
+  body.game-playing .dice-row .die.dice-result,
+  body.game-playing .dice-total.dice-total-pop{animation:none!important}
+}
