@@ -64,6 +64,12 @@ for(let start=0;start<100;start++)for(let roll=2;roll<=12;roll++){
   assert(end>=0&&end<=100,'Rebote fuera del tablero');
 }
 assert(app.includes('async function moveWithFinishBounce'),'Falta función de rebote');
+assert(app.includes('async function rollDice(auto=false)'),'La tirada de dados debe ser asíncrona para completar la animación antes de mover la ficha');
+assert(app.includes('die1?.classList.add(\'rolling\')'),'El lanzamiento debe activar estado visual de los dos dados');
+assert(app.includes('totalEl.classList.add(\'dice-total-pop\')'),'La suma debe tener feedback visual al aparecer');
+assert(html.includes('id="dice1"')&&html.includes('id="dice2"')&&html.includes('id="diceTotal"'),'La interfaz debe mostrar los dos dados y su total');
+assert(css.includes('dice-roll-v115')&&css.includes('dice-result-v115')&&css.includes('dice-total-pop-v115'),'Debe existir animación visual de lanzamiento y resultado de dados');
+
 assert(app.includes('position===BOARD_END'),'La victoria por dados debe exigir meta exacta');
 assert(/triggerCell\([^)]*\.position/.test(app),'La casilla tras movimiento/rebote debe resolverse');
 
