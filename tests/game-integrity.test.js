@@ -695,7 +695,7 @@ assert(app.includes("previousCell?.classList.add('step-trail')"),'Debe resaltar 
 assert(app.includes("cell?.classList.add('step-current')"),'Debe resaltar la casilla a la que llega la ficha');
 assert(app.includes("token.classList.add('step-hop')"),'La ficha debe saltar visualmente en cada paso');
 assert(app.includes('await delay(115)'),'El avance debe mantener una pausa breve y perceptible por casilla');
-assert(css.includes('v117 — Mejora 2')&&css.includes('.cell.step-trail')&&css.includes('.cell.step-current'),'Debe existir estilo de recorrido y casilla actual');
-assert(css.includes('@keyframes token-land-v117'),'Debe existir animación diferenciada de aterrizaje');
-assert(css.includes('@media (prefers-reduced-motion:reduce)')&&css.includes('.cell.step-trail'),'El movimiento debe respetar reducción de movimiento');
+assert(landscapeCss.includes('v117 — Mejora 2')&&landscapeCss.includes('.cell.step-trail')&&landscapeCss.includes('.cell.step-current'),'Debe existir estilo de recorrido y casilla actual');
+assert(landscapeCss.includes('@keyframes token-land-v117'),'Debe existir animación diferenciada de aterrizaje');
+assert(landscapeCss.includes('@media (prefers-reduced-motion:reduce)')&&landscapeCss.includes('.cell.step-trail'),'El movimiento debe respetar reducción de movimiento');
 console.log('✓ Mejora 2: rastro de recorrido, salto por casilla y aterrizaje reforzado');
