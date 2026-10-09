@@ -187,8 +187,9 @@
             <div class="turn-copy"><span>AHORA JUEGA</span><strong id="turnPlayerName">Jugador 1</strong><small id="turnPrompt">Tira los dados</small></div>
           </div>
           <span class="eyebrow dice-eyebrow">🎲🎲 DOS DADOS</span>
-          <div class="dice-row"><div id="dice1" class="die">⚀</div><div id="dice2" class="die">⚀</div></div>
-          <div class="dice-total">Total: <strong id="diceTotal">2</strong></div>
+          <div class="dice-row" aria-label="Resultado de los dos dados"><div id="dice1" class="die" role="img" aria-label="Dado 1: uno">⚀</div><div id="dice2" class="die" role="img" aria-label="Dado 2: uno">⚀</div></div>
+          <div class="dice-total" aria-live="polite">Suma de dados: <strong id="diceTotal">2</strong></div>
+          <p id="diceBreakdown" class="dice-breakdown" aria-live="polite">Dado 1: 1 · Dado 2: 1</p>
           <button id="rollBtn" class="btn roll-btn">Tirar los dados</button>
           <div id="phaseIndicator" class="phase-indicator" aria-live="polite"><b>TURNO</b><span>Preparando…</span></div><p id="statusText" class="status">Pulsa los dados para comenzar.</p>
         </section>

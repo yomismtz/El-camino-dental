@@ -1394,3 +1394,35 @@ html,body{width:100%;height:100%;margin:0;overflow:hidden}
   body.game-playing .dice-row .die.dice-result,
   body.game-playing .dice-total.dice-total-pop{animation:none!important}
 }
+
+
+/* v116 — Mejora 1: suma legible, desglose y estado táctil de los dados */
+@media (orientation:landscape){
+  body.game-playing .dice-breakdown{
+    display:block!important;
+    margin:0!important;
+    padding:4px 8px!important;
+    border-radius:8px!important;
+    background:rgba(39,139,255,.08)!important;
+    color:var(--ink,#234)!important;
+    font-size:clamp(10px,1.05vw,13px)!important;
+    font-weight:700!important;
+    line-height:1.25!important;
+    text-align:center!important;
+    font-variant-numeric:tabular-nums!important;
+  }
+  body.game-playing .dice-total{
+    text-align:center!important;
+    font-size:clamp(11px,1.15vw,14px)!important;
+  }
+  body.game-playing .roll-btn[aria-busy="true"]{
+    pointer-events:none!important;
+    cursor:wait!important;
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  body.game-playing .dice-row .die.rolling,
+  body.game-playing .dice-row .die.dice-shake,
+  body.game-playing .dice-row .die.dice-result,
+  body.game-playing .dice-total.dice-total-pop{animation:none!important}
+}

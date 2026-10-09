@@ -8,6 +8,7 @@ const app=read('app-v10.js');
 const html=read('play.html');
 const i18n=read('i18n.js');
 const classifier=read('area-classifier.js');
+const landscapeCss=read('game-landscape-v100.css');
 
 function extractSet(name){
   const m=app.match(new RegExp(name+'\\s*:\\s*new Set\\(\\[([^\\]]*)\\]\\)'));
@@ -68,7 +69,10 @@ assert(app.includes('async function rollDice(auto=false)'),'La tirada de dados d
 assert(app.includes('die1?.classList.add(\'rolling\')'),'El lanzamiento debe activar estado visual de los dos dados');
 assert(app.includes('totalEl.classList.add(\'dice-total-pop\')'),'La suma debe tener feedback visual al aparecer');
 assert(html.includes('id="dice1"')&&html.includes('id="dice2"')&&html.includes('id="diceTotal"'),'La interfaz debe mostrar los dos dados y su total');
-assert(css.includes('dice-roll-v115')&&css.includes('dice-result-v115')&&css.includes('dice-total-pop-v115'),'Debe existir animación visual de lanzamiento y resultado de dados');
+assert(landscapeCss.includes('dice-roll-v115')&&landscapeCss.includes('dice-result-v115')&&landscapeCss.includes('dice-total-pop-v115'),'Debe existir animación visual de lanzamiento y resultado de dados');
+assert(html.includes('id="diceBreakdown"'),'Debe mostrar el resultado individual de ambos dados');
+assert(app.includes("rollBtn.textContent='🎲 Lanzando dados…'")&&app.includes("rollBtn.setAttribute('aria-busy',String(!!state.locked))"),'Debe bloquear y anunciar el estado de lanzamiento/movimiento');
+assert(app.includes('Dado 1: ${a} · Dado 2: ${b}')&&app.includes('Avanza ${total} casillas'),'Debe mostrar el desglose de los dados y las casillas de avance');
 
 assert(app.includes('position===BOARD_END'),'La victoria por dados debe exigir meta exacta');
 assert(/triggerCell\([^)]*\.position/.test(app),'La casilla tras movimiento/rebote debe resolverse');
