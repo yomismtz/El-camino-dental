@@ -597,19 +597,27 @@ async function animateToPosition(p,target){
   const step=target>=p.position?1:-1;
   let tick=0;
   while(p.position!==target){
+    const previousPosition=p.position;
     p.position+=step;
     render();
+    const previousCell=previousPosition>0?document.querySelector(`[data-cell="${previousPosition}"]`):document.querySelector('.start-marker');
     const cell=document.querySelector(`[data-cell="${p.position}"]`);
+    previousCell?.classList.add('step-trail');
+    cell?.classList.add('step-current');
+    setTimeout(()=>{
+      previousCell?.classList.remove('step-trail');
+      cell?.classList.remove('step-current');
+    },300);
     const token=cell?.querySelector('.board-token.active');
     if(token){
       token.classList.remove('step-hop');
       void token.offsetWidth;
       token.classList.add('step-hop');
-      setTimeout(()=>token.classList.remove('step-hop'),220);
+      setTimeout(()=>token.classList.remove('step-hop'),240);
     }
     if(++tick%2===0)focusCurrentCell(false);
     tone('step');
-    await delay(105);
+    await delay(115);
   }
 }
 async function moveWithFinishBounce(delta){

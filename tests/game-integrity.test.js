@@ -687,3 +687,15 @@ assert.strictEqual(savedSession.playerId,'client-1','La identidad persistente de
 assert.strictEqual(btStorage.get('elCaminoDentalPlayerIdV1'),persistentPlayerId,'La identidad debe existir en el almacenamiento persistente');
 assert.strictEqual(btRuntimeSource.includes('saveSession()'),true,'La persistencia debe usarse en el runtime');
 console.log('✓ Mejora 19: reconexión, snapshots fuera de orden, expiración, roomId/protocolo/playerId, deduplicación, abandono y permisos runtime');
+
+
+/* Mejora 2: movimiento de fichas con rastro, salto y aterrizaje visibles. */
+assert(app.includes('const previousPosition=p.position;'),'El movimiento debe recordar la casilla de origen para dibujar el recorrido');
+assert(app.includes("previousCell?.classList.add('step-trail')"),'Debe resaltar brevemente la casilla que deja la ficha');
+assert(app.includes("cell?.classList.add('step-current')"),'Debe resaltar la casilla a la que llega la ficha');
+assert(app.includes("token.classList.add('step-hop')"),'La ficha debe saltar visualmente en cada paso');
+assert(app.includes('await delay(115)'),'El avance debe mantener una pausa breve y perceptible por casilla');
+assert(css.includes('v117 — Mejora 2')&&css.includes('.cell.step-trail')&&css.includes('.cell.step-current'),'Debe existir estilo de recorrido y casilla actual');
+assert(css.includes('@keyframes token-land-v117'),'Debe existir animación diferenciada de aterrizaje');
+assert(css.includes('@media (prefers-reduced-motion:reduce)')&&css.includes('.cell.step-trail'),'El movimiento debe respetar reducción de movimiento');
+console.log('✓ Mejora 2: rastro de recorrido, salto por casilla y aterrizaje reforzado');
