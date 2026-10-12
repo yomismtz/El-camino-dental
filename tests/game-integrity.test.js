@@ -9,6 +9,7 @@ const html=read('play.html');
 const i18n=read('i18n.js');
 const classifier=read('area-classifier.js');
 const landscapeCss=read('game-landscape-v100.css');
+const homeCss=read('home-launcher-v1.css');
 
 function extractSet(name){
   const m=app.match(new RegExp(name+'\\s*:\\s*new Set\\(\\[([^\\]]*)\\]\\)'));
@@ -21,6 +22,10 @@ function bounce(start,roll){
 }
 
 assert(app.includes('const BOARD_END=100;'),'BOARD_END debe ser 100');
+assert(html.includes('home-launcher-v1.css'),'La página de juego debe cargar el arreglo de desplazamiento web');
+assert(homeCss.includes('body:not(.game-playing){')&&homeCss.includes('overflow-y:auto!important;'),'La configuración web debe permitir desplazamiento vertical');
+assert(homeCss.includes('body:not(.game-playing) .screen.active')&&homeCss.includes('overflow:visible!important;'),'La configuración no debe quedar recortada en pantallas pequeñas');
+
 assert(html.includes('100 casillas'),'La interfaz debe declarar 100 casillas');
 assert(html.includes('<b>100</b>'),'La meta visible debe ser 100');
 

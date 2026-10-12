@@ -17,3 +17,63 @@
 @media (max-width:620px){.home-quick-actions{grid-template-columns:1fr}.home-action{min-height:62px}.home-hero-logo{width:min(300px,88vw)}}
 @media (orientation:landscape) and (max-height:760px){#setup.screen.active .setup-copy{justify-content:flex-start;overflow:auto!important;padding-right:4px;scrollbar-width:thin}.home-hero{margin-bottom:6px}.home-hero-logo{width:min(300px,62%);max-height:66px}.home-hero-badge{font-size:9px;padding:5px 8px}.home-quick-actions{gap:6px;margin-top:8px}.home-action{min-height:54px;padding:7px 8px;border-radius:13px;grid-template-columns:32px minmax(0,1fr) 14px;gap:7px}.home-action-icon{width:32px;height:32px;border-radius:9px;font-size:18px}.home-action b{font-size:12px}.home-action small{font-size:9px}.home-action>strong{font-size:15px}}
 @media (orientation:landscape) and (max-height:500px){.home-hero-logo{width:min(240px,52%);max-height:48px}.home-hero-badge{display:none}.home-quick-actions{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.home-action{min-height:48px;grid-template-columns:28px minmax(0,1fr);padding:5px 6px}.home-action-icon{width:28px;height:28px;font-size:15px}.home-action>strong{display:none}.home-action b{font-size:10px}.home-action small{font-size:8px}}
+
+
+/* v2 — navegación web móvil: nunca bloquear el desplazamiento de la configuración.
+   El bloqueo de pantalla solo se aplica durante la partida (body.game-playing). */
+html,body{
+  max-width:100%;
+  overflow-x:hidden!important;
+  overscroll-behavior-x:none;
+}
+body:not(.game-playing){
+  position:static!important;
+  inset:auto!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:100dvh!important;
+  max-height:none!important;
+  overflow-x:hidden!important;
+  overflow-y:auto!important;
+  overscroll-behavior-y:auto!important;
+  touch-action:pan-y!important;
+  -webkit-overflow-scrolling:touch;
+}
+body:not(.game-playing) .app-shell{
+  position:static!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:100dvh!important;
+  max-height:none!important;
+  overflow:visible!important;
+}
+body:not(.game-playing) .screen.active{
+  position:static!important;
+  height:auto!important;
+  min-height:calc(100dvh - 56px)!important;
+  max-height:none!important;
+  overflow:visible!important;
+  touch-action:pan-y!important;
+}
+body:not(.game-playing) #setup.screen.active,
+body:not(.game-playing) #setup.screen.active .setup-card,
+body:not(.game-playing) #setup.screen.active .setup-copy,
+body:not(.game-playing) #setup.screen.active .setup-form{
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  overflow:visible!important;
+  touch-action:pan-y!important;
+}
+body:not(.game-playing) dialog[open]{
+  max-height:94dvh!important;
+  overflow-y:auto!important;
+  overscroll-behavior-y:contain!important;
+  touch-action:pan-y!important;
+  -webkit-overflow-scrolling:touch!important;
+}
+/* En el juego sí se conserva el lienzo horizontal fijo y el tablero sin desplazamiento de página. */
+body.game-playing{
+  overflow:hidden!important;
+  touch-action:manipulation!important;
+}
