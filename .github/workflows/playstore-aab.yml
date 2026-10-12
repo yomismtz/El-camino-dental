@@ -10,6 +10,7 @@ on:
       - 'package.json'
       - 'capacitor.config.json'
       - 'play.html'
+      - 'index.html'
       - 'app-v10.js'
       - 'step21-bluetooth-runtime.js'
       - 'native/**'
