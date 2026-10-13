@@ -1,56 +1,75 @@
-# Política de Privacidad — El camino de la ortopedia dental
+# Política de Privacidad — El Camino Dental
 
-**Última actualización: 17 de septiembre de 2026.**
+**Última actualización: 12 de octubre de 2026**
 
-Esta política describe el comportamiento actual de **El camino de la ortopedia dental**, proyecto educativo desarrollado por **Mtra. Yomira Salgado Martinez**.
+Esta política explica cómo trata la información el juego educativo **El Camino Dental**, disponible como sitio web y aplicación Android. El proyecto es desarrollado por Mtra. Yomira Salgado Martinez.
 
 ## Resumen
 
-- El juego no requiere cuenta ni inicio de sesión.
-- No incluye publicidad ni analítica propia.
-- No vende datos personales.
-- Los nombres o apodos, progreso, fichas y estado de la partida se guardan localmente en el dispositivo mediante `localStorage`.
-- El código del juego no envía esos datos a una base de datos propia ni a un servidor administrado por la autora.
-- La versión web se aloja en GitHub Pages, por lo que GitHub puede procesar información técnica asociada a la visita de acuerdo con su propia política de privacidad.
+- No se requiere crear una cuenta ni iniciar sesión para jugar.
+- El código propio del juego no incorpora publicidad, seguimiento publicitario ni analítica propia.
+- Los nombres o apodos de jugadores, el progreso, las preferencias y las actividades creadas en el Modo Docente se guardan principalmente en el almacenamiento local del dispositivo.
+- El juego no envía esos datos a una base de datos propia ni a un servidor administrado por la responsable del proyecto.
+- El modo multijugador Android utiliza Bluetooth para la comunicación local entre dispositivos y requiere los permisos correspondientes del sistema.
+- El proveedor de alojamiento web y la plataforma de distribución de aplicaciones pueden tratar ciertos datos técnicos conforme a sus propias políticas.
 
-## Datos utilizados por el juego
+## 1. Información que puede utilizar el juego
 
-Para identificar turnos, el usuario puede introducir nombres o apodos. El juego conserva localmente el progreso de la partida, posición de las fichas, personajes seleccionados y elementos ya utilizados de los bancos de preguntas y casos.
+Según las funciones utilizadas, el usuario puede introducir nombres o apodos de jugadores, crear preguntas, respuestas, actividades y casos educativos, y guardar el progreso de una partida. El juego también mantiene información técnica necesaria para la sesión, como la selección de personajes, la posición de las fichas, las preguntas utilizadas y el estado de una sala Bluetooth.
 
-## Datos que no solicitamos
+Esta información se almacena localmente mediante el almacenamiento del navegador o de la aplicación. El proyecto no dispone de una cuenta de usuario ni de una base de datos propia para recibir esos datos.
 
-El juego no solicita nombre legal, domicilio, correo electrónico, teléfono, ubicación precisa, información financiera, contactos, cámara, micrófono, galería ni archivos personales.
+## 2. Permisos de Bluetooth en Android
 
-## Eliminación
+La función multijugador puede solicitar permisos de Bluetooth para buscar dispositivos cercanos, anunciar la disponibilidad del dispositivo y establecer o mantener una conexión con otros jugadores. Bluetooth se utiliza para la comunicación entre los dispositivos participantes. No se solicita ubicación precisa como función propia del juego; Android puede mostrar avisos o aplicar requisitos del sistema según la versión instalada.
 
-El progreso puede eliminarse reiniciando la partida o borrando los datos del sitio o de la aplicación en el dispositivo.
+Si no se conceden los permisos, las funciones multijugador que dependan de Bluetooth pueden no estar disponibles. El usuario puede administrar o revocar los permisos desde los ajustes de Android.
 
-## GitHub Pages
+## 3. Información que no solicitamos deliberadamente
 
-La versión web utiliza GitHub Pages. GitHub indica que las visitas a sitios de GitHub Pages pueden generar registros de la dirección IP con fines de seguridad y puede tratar otros datos técnicos de uso de acuerdo con su Declaración General de Privacidad:
+El juego no requiere nombre legal, domicilio, correo electrónico, número de teléfono, fecha de nacimiento, información financiera ni credenciales de otras cuentas. No integra acceso propio a contactos, cámara, micrófono o galería para las funciones descritas en esta política.
 
-https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement
+No se deben introducir contraseñas, expedientes clínicos identificables, datos sensibles de pacientes ni información personal innecesaria en nombres de jugadores, actividades, preguntas o casos.
 
-## Menores de edad y uso educativo
+## 4. Almacenamiento local, importación y exportación
 
-El juego puede utilizarse con fines académicos, pero no está diseñado para recopilar deliberadamente datos personales de menores. Se recomienda usar nombres de pila, apodos o números de equipo y no introducir información personal o clínica real.
+El progreso, los nombres o apodos y el contenido creado en el Modo Docente pueden guardarse en el dispositivo mediante almacenamiento local. Las funciones de exportación generan archivos en el dispositivo; la importación procesa el archivo que el propio usuario selecciona. El proyecto no recibe automáticamente esos archivos.
 
-## Información clínica
+El usuario puede borrar el progreso desde las opciones disponibles en el juego o eliminar los datos de la aplicación o del sitio desde los ajustes del dispositivo o navegador. Al borrar el almacenamiento, desinstalar la aplicación o cambiar de dispositivo, los datos locales pueden perderse. Si el usuario comparte manualmente un archivo exportado, su tratamiento posterior dependerá de la aplicación o persona receptora.
 
-Las preguntas y casos tienen finalidad docente. El juego no debe utilizarse para ingresar expedientes clínicos identificables y no sustituye la evaluación, diagnóstico o tratamiento profesional de un paciente real.
+## 5. Alojamiento web y distribución Android
 
-## Terceros
+La versión web se aloja en GitHub Pages. GitHub puede procesar información técnica de las visitas, como direcciones IP y registros de solicitudes, para operar y proteger su servicio. Consulta la [Declaración General de Privacidad de GitHub](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement).
 
-Actualmente el juego no integra servicios externos de autenticación, publicidad, pagos ni analítica. Los enlaces externos se rigen por las políticas de los sitios de destino.
+La aplicación Android se distribuye o prepara para distribución mediante plataformas de terceros, como Google Play. Esas plataformas pueden tratar información técnica de descarga, instalación, seguridad o funcionamiento conforme a sus propias políticas. Esta política describe el comportamiento del proyecto y no sustituye las políticas de los proveedores externos.
 
-## Cambios futuros
+## 6. Cookies y tecnologías similares
 
-Si se incorporan cuentas, sincronización, analítica, publicidad, almacenamiento remoto o nuevos permisos de Android, esta política deberá actualizarse antes de activar esas funciones.
+El código propio del juego utiliza almacenamiento local para conservar el estado de la partida y las actividades del usuario. No incorpora cookies publicitarias ni herramientas propias de seguimiento publicitario o analítica. El proveedor de alojamiento puede utilizar tecnologías necesarias para la seguridad y operación de su infraestructura conforme a sus políticas.
 
-## Contacto
+## 7. Menores de edad y uso educativo
 
-Las preguntas sobre privacidad o funcionamiento pueden enviarse mediante Issues del repositorio:
+El juego tiene una finalidad educativa y puede utilizarse en contextos académicos. No está diseñado para recopilar deliberadamente datos personales de menores. Se recomienda utilizar apodos, nombres de pila o números de equipo, evitar información sensible y contar con la supervisión que corresponda al contexto educativo.
 
-https://github.com/yomismtz/El-camino-de-la-ortopedia-juego-de-mesa/issues
+## 8. Información clínica
 
-La versión pública de esta política se encuentra en `privacy.html` dentro del sitio de GitHub Pages.
+Las preguntas y los casos tienen finalidad docente. El juego no está diseñado para almacenar expedientes clínicos reales. No introduzcas datos que permitan identificar pacientes. El contenido educativo no sustituye la evaluación, el diagnóstico ni el tratamiento profesional.
+
+## 9. Seguridad y conservación
+
+La arquitectura intenta reducir la recopilación mediante el uso de almacenamiento local y comunicación Bluetooth entre dispositivos. Ningún sistema puede garantizar seguridad absoluta. La información local se conserva hasta que el usuario o el sistema la elimina, o hasta que se sobrescribe como parte del funcionamiento del juego. No podemos eliminar a distancia datos guardados únicamente en el dispositivo del usuario.
+
+## 10. Enlaces y servicios de terceros
+
+El sitio puede incluir enlaces externos. Al abrirlos, el usuario queda sujeto a las políticas del sitio de destino. No controlamos las prácticas de privacidad de GitHub, Google Play ni de otros proveedores externos.
+
+## 11. Cambios en esta política
+
+Esta política se actualizará si cambian las funciones, los permisos, los servicios externos o las prácticas de tratamiento de información. La fecha de la última actualización se muestra al inicio.
+
+## 12. Contacto
+
+Para reportar cuestiones de privacidad o funcionamiento, utiliza la sección de incidencias del repositorio del proyecto: [GitHub Issues](https://github.com/yomismtz/El-camino-de-la-ortopedia-juego-de-mesa/issues).
+
+**Responsable del proyecto:** Mtra. Yomira Salgado Martinez  
+**Proyecto:** El Camino Dental
