@@ -73,6 +73,10 @@ assert(app.includes("if(state.roundActive)return finishRound(state.players[state
 assert(app.includes("return resolveLanding(depth+1,turnActionToken)"),'El movimiento por respuesta debe resolver la casilla de destino');
 assert(!/if\(d<0&&state\?\.roundErrors>0&&state\.roundErrors<3\)\{[\s\S]{0,220}showQuestion\(\)/.test(app),'Un error no debe repetir el mismo reactivo sin resolver la nueva casilla');
 assert(app.includes("if(state?.roundActive)return finishRound(currentPlayer(),state.roundBank||1,'landing')"),'Eventos especiales y cárcel deben cerrar la ronda después de aplicar su efecto');
+assert(app.includes('state.finalRoundPlayerIndex=state.players.indexOf(winner)'), 'La ronda final debe conservar al ganador de la ronda 8');
+assert(app.includes('playerIndex:eligibleIndex'), 'La ronda final debe guardar al jugador elegible');
+assert(app.includes('if(!f?.active||f.answerLocked||!Number.isInteger(choice))return'), 'La ronda final debe bloquear respuestas duplicadas');
+assert(app.includes('if(winner&&!f.awarded)'), 'Los puntos de la ronda final solo se deben asignar una vez');
 assert(app.includes('async function moveWithFinishBounce'),'Falta función de rebote');
 assert(app.includes('async function rollDice(auto=false)'),'La tirada de dados debe ser asíncrona para completar la animación antes de mover la ficha');
 assert(app.includes('die1?.classList.add(\'rolling\')'),'El lanzamiento debe activar estado visual de los dos dados');
