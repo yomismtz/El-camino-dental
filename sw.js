@@ -5,7 +5,7 @@ self.addEventListener('install',event=>{
  event.waitUntil((async()=>{
   const cache=await caches.open(CACHE);
   await Promise.all(CORE.map(async url=>{
-   try{await cache.add(new Request(url,{cache:'reload'}))}
+   try{await cache.add(new Request(new URL(url,self.registration.scope).href,{cache:'reload'}))}
    catch(error){console.warn('[PWA] No se pudo precargar:',url,error)}
   }));
   await self.skipWaiting();
