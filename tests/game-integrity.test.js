@@ -96,6 +96,14 @@ assert(app.includes('stopQuestionNarration();')&&app.includes('stopTimer();'),'L
 
 assert(html.includes('id="rulesDialog"'),'Falta reglamento');
 assert(html.includes('Victoria exacta y rebote en la META'),'El reglamento debe explicar la meta exacta');
+assert(html.includes('exactamente en la casilla 100'),'El reglamento debe establecer la meta en la casilla 100');
+assert(!html.includes('exactamente en la casilla 80'),'El reglamento no debe conservar la meta antigua de 80');
+const boardRuntime=read('step6-board-runtime.js');
+assert(boardRuntime.includes('0 / 100')&&boardRuntime.includes("pos+' / 100'"),'El indicador debe usar 100 casillas');
+assert(boardRuntime.includes('Math.min(100,Number(p.position)||0)')&&boardRuntime.includes('raw>100?100-(raw-100):raw'),'El indicador debe calcular posiciones y rebote con meta 100');
+const canvas=read('game-board-canvas-v98.js');
+assert(canvas.includes('Array.from({length:100}')&&canvas.includes('centers[99]'),'El renderizador Canvas debe usar 100 casillas y la META 100');
+assert(!canvas.includes('80 casillas')&&!canvas.includes('centers[79]'),'El renderizador Canvas no debe conservar referencias de la meta 80');
 assert(!html.includes('value="primer_parcial"'),'Primer parcial no debe ser módulo visible');
 assert(!classifier.includes('primer_parcial'),'El clasificador no debe conservar el módulo eliminado');
 for(const stale of ['900 preguntas','2–6 jugadores','38 casillas','37 casillas','llega o supera','🎯 Juega y aprueba']){
