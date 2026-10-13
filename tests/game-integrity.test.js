@@ -729,3 +729,15 @@ assert(characterRuntime.includes("['Ratón de los Dientes','🐭','toothMouse','
 assert(app.includes('La colección tiene 48 personajes.'),'El tutorial debe informar correctamente que la colección tiene 48 personajes');
 assert(app.includes('Nova está disponible al inicio; otros se desbloquean'),'El tutorial debe explicar el desbloqueo progresivo');
 assert(app.includes('Algunos personajes tienen habilidades especiales'),'El tutorial no debe afirmar que los personajes son solo visuales');
+
+
+const serviceWorker=read('sw.js');
+assert(serviceWorker.includes("const CACHE='el-camino-dental-v114'"),'La caché PWA debe versionarse al cambiar los recursos');
+for(const asset of ['./play.html','./app-v10.js','./step11-characters-runtime.js','./exam.js','./teacher.js','./game-landscape-v100.css']){
+ assert(serviceWorker.includes(asset),'La caché debe incluir '+asset);
+}
+assert(serviceWorker.includes("cache.match(request,{ignoreSearch:true})"),'El service worker debe reutilizar recursos almacenados');
+assert(serviceWorker.includes("if(request.mode==='navigate')"),'Debe existir fallback de navegación sin conexión');
+for(const page of ['index.html','play.html','teacher.html','exam.html']){
+ assert(read(page).includes("navigator.serviceWorker.register('./sw.js')"),page+' debe registrar el service worker');
+}
