@@ -651,7 +651,7 @@ function triggerCell(cell,depth=0,token=turnActionToken){
     landingCell.classList.add('landing-focus');
     setTimeout(()=>landingCell.classList.remove('landing-focus'),760);
   }
-  const r=ruleForCell(cell);if(r.type==='question')return startQuestion(r.deck,depth);if(r.type==='case')return state?.module==='nomenclatura_etimologia'?startQuestion(r.deck,depth):startCase(r.deck,depth);if(r.type==='advance1')return movement('advance1',1,depth,token);if(r.type==='advance2')return movement('advance2',2,depth,token);if(r.type==='back1')return movement('back1',-1,depth,token);if(r.type==='back2')return movement('back2',-2,depth,token);if(r.type==='back3')return movement('back3',-3,depth,token);if(r.type==='vacation')return loseTurnEvent('vacation','Vacaciones',1);if(r.type==='tax')return loseTurnEvent('tax','Impuestos',1);if(r.type==='equipment')return loseTurnEvent('equipment','Equipo descompuesto',1);if(r.type==='lawsuit')return lawsuit(depth,token);if(r.type==='jail')return jail();if(r.type==='specialShield')return specialCell('specialShield');if(r.type==='specialBoost')return specialCell('specialBoost');if(r.type==='specialBonus')return specialCell('specialBonus');if(r.type==='finish')return showWinner(state.players[state.current]);statusText.textContent='Casilla de descanso. Siguiente turno.';transitionTimer=setTimeout(()=>{transitionTimer=null;if(token===turnActionToken)endTurn()},420)}
+  const r=ruleForCell(cell);if(r.type==='question')return startQuestion(r.deck,depth);if(r.type==='case')return state?.module==='nomenclatura_etimologia'?startQuestion(r.deck,depth):startCase(r.deck,depth);if(r.type==='advance1')return movement('advance1',1,depth,token);if(r.type==='advance2')return movement('advance2',2,depth,token);if(r.type==='back1')return movement('back1',-1,depth,token);if(r.type==='back2')return movement('back2',-2,depth,token);if(r.type==='back3')return movement('back3',-3,depth,token);if(r.type==='vacation')return loseTurnEvent('vacation','Vacaciones',1);if(r.type==='tax')return loseTurnEvent('tax','Impuestos',1);if(r.type==='equipment')return loseTurnEvent('equipment','Equipo descompuesto',1);if(r.type==='lawsuit')return lawsuit(depth,token);if(r.type==='jail')return jail();if(r.type==='specialShield')return specialCell('specialShield');if(r.type==='specialBoost')return specialCell('specialBoost');if(r.type==='specialBonus')return specialCell('specialBonus');if(r.type==='finish')return showWinner(state.players[state.current]);if(state.roundActive)return finishRound(state.players[state.current],state.roundBank||1,'landing');statusText.textContent='Casilla de descanso. Siguiente turno.';transitionTimer=setTimeout(()=>{transitionTimer=null;if(token===turnActionToken)endTurn()},420)}
 function startQuestion(deck,chainDepth=0){if(state&&!state.roundActive)beginRound();if(state)state.pendingResolution={position:currentPlayer()?.position??0,depth:chainDepth};step5Phase('thinking',tr('Piensa la respuesta','Think about the answer'));const bank=activeQuestionBank(),q=pickQueued(bank,'questionQueue','questionQueueSize','lastQuestionIndex');if(!q)return endTurn();pendingQuestion=randomizePresentedItem({...q,kind:'question',chainDepth},'question');selectedAnswer=null;tone('question');saveGame();showQuestion()}
 function startCase(deck,chainDepth=0){if(state&&!state.roundActive)beginRound();if(state)state.pendingResolution={position:currentPlayer()?.position??0,depth:chainDepth};const bank=activeCaseBank();if(!bank.length&&state?.module==='personalizado')return startQuestion(deck,chainDepth);const q=pickQueued(bank,'caseQueue','caseQueueSize','lastCaseIndex');if(!q)return endTurn();pendingQuestion=randomizePresentedItem({...q,kind:'case',chainDepth},'case');selectedAnswer=null;tone('case');saveGame();showQuestion()}
 function renderQuestionCharacter(mode='neutral'){
@@ -818,14 +818,15 @@ async function continueAfterQuestion(){
   if(q?.robberyReady){return startRobbery()}
   if(d<0&&state?.roundErrors>0&&state.roundErrors<3){
     await move(d);
-    q.resultDelta=0;
+    pendingQuestion=null;
+    if(state)state.pendingResolution=null;
+    if(questionDialog?.open)questionDialog.close();
     selectedAnswer=null;
-    showQuestion();
-    return
+    return resolveLanding(depth+1,turnActionToken)
   }
   pendingQuestion=null;
   if(state)state.pendingResolution=null;
-  questionDialog.close();
+  if(questionDialog?.open)questionDialog.close();
   if(!d){
     const winner=state.players[state.current];
     return finishRound(winner,state.roundBank||1,'answer')
@@ -833,7 +834,7 @@ async function continueAfterQuestion(){
   await move(d);
   const winner=state.players[state.current];
   if(winner.position>=BOARD_END){return showWinner(winner)}
-  return finishRound(winner,state.roundBank||1,'answer')
+  return resolveLanding(depth+1,turnActionToken)
 }
 function nextRivalIndex(source){
   if(!state?.players?.length)return source;
@@ -921,10 +922,10 @@ function startTimer(reset=true){if(timer||!pendingQuestion||narrationActive)retu
 function stopTimer(pause=false){if(timer){clearInterval(timer);timer=null}if(pause&&pendingQuestion&&timerLeft>0){timerPaused=true;timerPausedLeft=timerLeft}}
 function movement(type,delta,depth=0,token=turnActionToken){const m=RULE_META[type];tone(type);showEvent(m.title,m.message,m.icon,async()=>{if(token!==turnActionToken)return;await move(delta);return resolveLanding(depth+1,token)})}
 function addSkipTurns(turns,reason){const p=state.players[state.current];p.skipTurns=(p.skipTurns||0)+turns;p.skipReason=reason||p.skipReason||'Evento';render()}
-function loseTurnEvent(type,reason,turns=1){const m=RULE_META[type];tone(type);addSkipTurns(turns,reason);showEvent(m.title,m.message,m.icon,endTurn)}
-function specialCell(type){const p=currentPlayer();if(!p)return endTurn();const m=RULE_META[type];if(type==='specialShield')p.specialShield=true;if(type==='specialBoost')p.specialBoost=2;if(type==='specialBonus')p.specialBonus=1;tone('event');saveGame();showEvent(m.title,m.message,m.icon,()=>{render();endTurn()})}
+function loseTurnEvent(type,reason,turns=1){const m=RULE_META[type];tone(type);addSkipTurns(turns,reason);showEvent(m.title,m.message,m.icon,()=>{if(state?.roundActive)return finishRound(currentPlayer(),state.roundBank||1,'landing');endTurn()})}
+function specialCell(type){const p=currentPlayer();if(!p)return endTurn();const m=RULE_META[type];if(type==='specialShield')p.specialShield=true;if(type==='specialBoost')p.specialBoost=2;if(type==='specialBonus')p.specialBonus=1;tone('event');saveGame();showEvent(m.title,m.message,m.icon,()=>{render();if(state?.roundActive)return finishRound(currentPlayer(),state.roundBank||1,'landing');endTurn()})}
 function lawsuit(depth=0,token=turnActionToken){const m=RULE_META.lawsuit;tone('lawsuit');showEvent(m.title,m.message,m.icon,async()=>{if(token!==turnActionToken)return;const p=state.players[state.current];await move(JAIL_CELL-p.position);return resolveLanding(depth+1,token)})}
-function jail(){const m=RULE_META.jail,p=state.players[state.current];p.jailVisits=(p.jailVisits||0)+1;const turns=p.jailVisits===1?2:3;addSkipTurns(turns,'Cárcel');tone('jail');const text=p.jailVisits===1?'Primera vez en la cárcel: pierdes 2 turnos.':`Visita ${p.jailVisits} a la cárcel: pierdes 3 turnos.`;showEvent(m.title,text,m.icon,endTurn)}
+function jail(){const m=RULE_META.jail,p=state.players[state.current];p.jailVisits=(p.jailVisits||0)+1;const turns=p.jailVisits===1?2:3;addSkipTurns(turns,'Cárcel');tone('jail');const text=p.jailVisits===1?'Primera vez en la cárcel: pierdes 2 turnos.':`Visita ${p.jailVisits} a la cárcel: pierdes 3 turnos.`;showEvent(m.title,text,m.icon,()=>{if(state?.roundActive)return finishRound(currentPlayer(),state.roundBank||1,'landing');endTurn()})}
 function renderCharacterBook(){
   const host=$('characterBookGrid');if(!host)return;
   host.innerHTML=CHARACTERS.map((ch,i)=>`<article class="character-book-item" style="--accent:${ch.color}"><div class="book-art">${characterSprite(ch,'book-character')}</div><div><h3>${ch.name}</h3><b>${ch.role}</b><p>${ch.desc}</p>${ch.ability?`<p><strong>${ch.ability.name}</strong><br><small>${ch.ability.description}</small></p>`:''}<small>“${personaFor(i).correct}”</small></div></article>`).join('')
