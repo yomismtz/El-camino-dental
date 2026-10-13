@@ -720,3 +720,12 @@ assert(landscapeCss.includes('v117 — Mejora 2')&&landscapeCss.includes('.cell.
 assert(landscapeCss.includes('@keyframes token-land-v117'),'Debe existir animación diferenciada de aterrizaje');
 assert(landscapeCss.includes('@media (prefers-reduced-motion:reduce)')&&landscapeCss.includes('.cell.step-trail'),'El movimiento debe respetar reducción de movimiento');
 console.log('✓ Mejora 2: rastro de recorrido, salto por casilla y aterrizaje reforzado');
+
+
+const characterRuntime=read('step11-characters-runtime.js');
+assert(characterRuntime.includes('/* Paso 11 · colección completa de 48 personajes. */'),'El runtime debe documentar la colección de 48 personajes');
+assert(characterRuntime.includes('CHARACTERS.push({name,role:\'Especialista\''),'La colección debe construir personajes especialistas');
+assert(characterRuntime.includes("['Ratón de los Dientes','🐭','toothMouse','30 partidas']")&&characterRuntime.includes("['Santa Apolonia','👑🦷','apollonia','10 victorias en extremo']")&&characterRuntime.includes("['Dios de los Dientes','⚡🦷','toothGod','50 victorias en extremo']"),'Deben mantenerse los 3 personajes legendarios y sus requisitos');
+assert(app.includes('La colección tiene 48 personajes.'),'El tutorial debe informar correctamente que la colección tiene 48 personajes');
+assert(app.includes('Nova está disponible al inicio; otros se desbloquean'),'El tutorial debe explicar el desbloqueo progresivo');
+assert(app.includes('Algunos personajes tienen habilidades especiales'),'El tutorial no debe afirmar que los personajes son solo visuales');
