@@ -11,8 +11,9 @@
     "@capacitor/cli": "^7.0.0"
   },
   "scripts": {
-    "test": "node tests/game-integrity.test.js && node tests/content-audit.test.js",
+    "test": "node tests/game-integrity.test.js && node tests/content-audit.test.js && node tests/game-behavior.test.js",
     "test:integrity": "node tests/game-integrity.test.js",
-    "test:content": "node tests/content-audit.test.js"
+    "test:content": "node tests/content-audit.test.js",
+    "test:behavior": "node tests/game-behavior.test.js"
   }
 }
