@@ -13,17 +13,17 @@ function ensureFocus(){
   const host=document.querySelector('.dice-panel'); if(!host)return;
   const box=document.createElement('section');
   box.id='step6Focus'; box.className='step6-focus'; box.setAttribute('aria-live','polite');
-  box.innerHTML='<div><b>POSICIÓN</b><strong id="step6Position">0 / 80</strong></div><div><b>DESTINO</b><strong id="step6Destination">—</strong></div><div><b>CASILLA</b><strong id="step6Cell">—</strong></div>';
+  box.innerHTML='<div><b>POSICIÓN</b><strong id="step6Position">0 / 100</strong></div><div><b>DESTINO</b><strong id="step6Destination">—</strong></div><div><b>CASILLA</b><strong id="step6Cell">—</strong></div>';
   const phase=el('phaseIndicator'); if(phase)phase.after(box);
 }
 function updateFocus(){
   const p=player(); if(!p)return; ensureFocus();
-  const pos=Math.max(0,Math.min(80,Number(p.position)||0));
+  const pos=Math.max(0,Math.min(100,Number(p.position)||0));
   const d=Math.max(0,Number(el('diceTotal')&&el('diceTotal').textContent)||0);
-  const raw=pos+d, dest=raw>80?80-(raw-80):raw;
+  const raw=pos+d, dest=raw>100?100-(raw-100):raw;
   const destination=d?dest:'—';
   const posEl=el('step6Position'),dstEl=el('step6Destination'),cellEl=el('step6Cell');
-  if(posEl)posEl.textContent=pos+' / 80';
+  if(posEl)posEl.textContent=pos+' / 100';
   if(dstEl)dstEl.textContent=String(destination);
   if(cellEl)cellEl.textContent=cellInfo(destination==='—'?pos:Number(destination));
   const call=el('turnPlayerName'),prompt=el('turnPrompt');
