@@ -183,5 +183,12 @@
   <script src="expansion-questions-2026.js"></script>
   <script src="legacy-difficulty-audit.js"></script>
   <script src="exam.js"></script>
-<script src="android-navigation.js"></script></body>
+<script src="android-navigation.js"></script>
+<script>
+// Registra la PWA para que los recursos precargados funcionen sin conexión.
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+ window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(error => console.warn('No se pudo registrar el modo sin conexión:', error)));
+}
+</script>
+</body>
 </html>
