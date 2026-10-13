@@ -932,7 +932,7 @@ function renderCharacterBook(){
 }
 const TUTORIAL_STEPS=[
   {title:'1. Elige qué practicar',text:'Selecciona un módulo o entra en Juego personalizado para elegir de 1 a 5 áreas. También puedes definir la dificultad y el número de jugadores.'},
-  {title:'2. Elige tu personaje',text:'Cada jugador elige uno de los 10 personajes disponibles. Los personajes son visuales: no cambian la dificultad ni dan ventajas académicas.'},
+  {title:'2. Elige tu personaje',text:'La colección tiene 48 personajes. Nova está disponible al inicio; otros se desbloquean al completar partidas o cumplir retos. Algunos personajes tienen habilidades especiales: revisa su descripción antes de elegir.'},
   {title:'3. Tira los dos dados',text:'En cada turno pulsa “Tirar los dados”. Avanzas la suma de ambos dados y el tablero centra automáticamente la casilla de tu ficha.'},
   {title:'4. Resuelve la casilla',text:'Según la casilla puedes encontrar una pregunta, un caso clínico o un evento especial. Responde, revisa la explicación y aplica el movimiento indicado.'},
   {title:'5. Llega a META',text:'El tablero tiene 100 casillas. La META está en la casilla 100 y debes llegar exactamente para ganar; si te pasas, el movimiento rebota.'}
